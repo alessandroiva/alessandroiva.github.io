@@ -47,6 +47,12 @@
             color: #fff;
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
         .nav-links {
             display: flex;
             gap: 30px;
@@ -64,6 +70,36 @@
 
         .nav-links a:hover {
             color: #fff;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid #2a2a2a;
+            color: #888;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .lang-btn.active {
+            background: #fff;
+            color: #0a0a0a;
+            border-color: #fff;
         }
 
         /* Hero Section */
@@ -158,6 +194,7 @@
             align-items: center;
             justify-content: center;
             color: #666;
+            overflow: hidden;
         }
 
         .about-text p {
@@ -311,52 +348,6 @@
             color: #888;
         }
 
-        /* Blog Section */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .blog-card {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            padding: 30px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-            border-color: #fff;
-        }
-
-        .blog-date {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .blog-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .blog-card p {
-            color: #888;
-            margin-bottom: 20px;
-        }
-
-        .blog-card a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .blog-card a:hover {
-            color: #888;
-        }
-
         /* Contact Section */
         .contact-content {
             max-width: 600px;
@@ -407,6 +398,15 @@
             color: #666;
         }
 
+        /* Hidden language sections */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -423,6 +423,11 @@
 
             .about-content {
                 grid-template-columns: 1fr;
+            }
+
+            .nav-right {
+                flex-direction: column;
+                gap: 15px;
             }
 
             .nav-links {
@@ -452,239 +457,802 @@
     <nav>
         <div class="container">
             <div class="logo">Alessandro Ivashkevich</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#about" data-translate="nav-about">About</a></li>
+                    <li><a href="#experience" data-translate="nav-experience">Experience</a></li>
+                    <li><a href="#skills" data-translate="nav-skills">Skills</a></li>
+                    <li><a href="#projects" data-translate="nav-projects">Projects</a></li>
+                    <li><a href="#contact" data-translate="nav-contact">Contact</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="lang-btn active" onclick="changeLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="changeLanguage('fr')">FR</button>
+                    <button class="lang-btn" onclick="changeLanguage('it')">IT</button>
+                    <button class="lang-btn" onclick="changeLanguage('ru')">RU</button>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Alessandro Ivashkevich</h1>
-            <p class="tagline">Data Scientist & Business Analytics Enthusiast</p>
-            <p>MSc student in Data Sciences & Business Analytics at ESSEC & CentraleSupélec. Passionate about transforming raw data into actionable insights and building innovative solutions at the intersection of technology and business.</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn">Get In Touch</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
-                </div>
-                <div class="about-text">
-                    <p>Hello! I'm Alessandro, a Data Sciences & Business Analytics graduate student at ESSEC & CentraleSupélec in Paris. Originally from Italy with Russian heritage, I've always been fascinated by the intersection of technology, data, and business strategy.</p>
-                    <p>I hold a Bachelor's degree in Management and Computer Science from Luiss Guido Carli (GPA: 108/110) and was selected for Stanford University's International Honors Program, where I studied Convex Optimization, High-Performance Computing, and Technology Entrepreneurship.</p>
-                    <p>What drives me is curiosity and the desire to understand "why" things work the way they do. I approach problems like puzzles, transforming fragmented data into clear, actionable insights. Currently seeking final-year internship opportunities, available to start in July 2026.</p>
+    <!-- ENGLISH VERSION -->
+    <div id="lang-en" class="lang-content active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Alessandro Ivashkevich</h1>
+                <p class="tagline">Data Scientist & Business Analytics Enthusiast</p>
+                <p>MSc student in Data Sciences & Business Analytics at ESSEC & CentraleSupélec. Passionate about transforming raw data into actionable insights and building innovative solutions at the intersection of technology and business.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn">Get In Touch</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="experience-grid">
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-title">
-                            <h3>Data Analyst Summer Intern</h3>
-                            <div class="experience-company">Bordier | Geneva, Switzerland</div>
-                        </div>
-                        <div class="experience-period">July 2025 – August 2025</div>
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
                     </div>
-                    <div class="experience-description">
+                    <div class="about-text">
+                        <p>Hello! I'm Alessandro, a Data Sciences & Business Analytics graduate student at ESSEC & CentraleSupélec in Paris. Originally from Italy with Russian heritage, I've always been fascinated by the intersection of technology, data, and business strategy.</p>
+                        <p>I hold a Bachelor's degree in Management and Computer Science from Luiss Guido Carli (GPA: 108/110) and was selected for Stanford University's International Honors Program, where I studied Convex Optimization, High-Performance Computing, and Technology Entrepreneurship.</p>
+                        <p>What drives me is curiosity and the desire to understand "why" things work the way they do. I approach problems like puzzles, transforming fragmented data into clear, actionable insights. Currently seeking final-year internship opportunities, available to start in July 2026.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <h2>Experience</h2>
+                <div class="experience-grid">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">
+                                <h3>Data Analyst Summer Intern</h3>
+                                <div class="experience-company">Bordier | Geneva, Switzerland</div>
+                            </div>
+                            <div class="experience-period">July 2025 – August 2025</div>
+                        </div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Designed and enhanced Excel-based templates used in monthly fund analysis, reducing manual work by 80%</li>
+                                <li>Optimized asset allocation and Monte Carlo simulation models, cutting processing time and improving forecast accuracy</li>
+                                <li>Developed an AI agent that increased time management efficiency across several teams</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">
+                                <h3>AI Applied Mathematician</h3>
+                                <div class="experience-company">Outlier | Paris, France</div>
+                            </div>
+                            <div class="experience-period">February 2025 – June 2025</div>
+                        </div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Collaborating with research teams to improve AI models performance</li>
+                                <li>Contributing to the development and evaluation of advanced mathematical models for AI applications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2>Skills & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
                         <ul>
-                            <li>Designed and enhanced Excel-based templates used in monthly fund analysis, reducing manual work by 80%</li>
-                            <li>Optimized asset allocation and Monte Carlo simulation models, cutting processing time and improving forecast accuracy</li>
-                            <li>Developed an AI agent that increased time management efficiency across several teams</li>
+                            <li>Python</li>
+                            <li>R</li>
+                            <li>SQL</li>
+                            <li>C++</li>
+                            <li>Spark</li>
+                            <li>MongoDB</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Data & Analytics Tools</h3>
+                        <ul>
+                            <li>Excel</li>
+                            <li>MATLAB</li>
+                            <li>n8n</li>
+                            <li>Azure</li>
+                            <li>KNIME</li>
+                            <li>Celonis</li>
+                            <li>SAS Studio</li>
+                            <li>Tableau</li>
+                            <li>Power BI</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Specialized Knowledge</h3>
+                        <ul>
+                            <li>Machine Learning & AI</li>
+                            <li>Business Intelligence</li>
+                            <li>Data Visualization</li>
+                            <li>Statistical Analysis</li>
+                            <li>Optimization Algorithms</li>
+                            <li>Fuzzy Logic & Metaheuristics</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <ul>
+                            <li>Italian (Native)</li>
+                            <li>Russian (Native)</li>
+                            <li>English (Fluent)</li>
+                            <li>French (Intermediate)</li>
                         </ul>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-title">
-                            <h3>AI Applied Mathematician</h3>
-                            <div class="experience-company">Outlier | Paris, France</div>
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Bachelor's Thesis: Long-Short Equities Optimization</h3>
+                        <p>Developed an innovative approach to optimize long-short equity portfolios using Fuzzy Logic and metaheuristic techniques, combining advanced mathematical methods with practical financial applications.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Fuzzy Logic</span>
+                            <span class="tech-tag">Optimization</span>
+                            <span class="tech-tag">Financial Modeling</span>
                         </div>
-                        <div class="experience-period">February 2025 – June 2025</div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
                     </div>
-                    <div class="experience-description">
+
+                    <div class="project-card">
+                        <h3>US Telecom Customer Churn Analysis</h3>
+                        <p>Built predictive models to forecast customer behavior and retention strategies using R. Applied multiple classification techniques including LASSO regression to identify key factors driving customer churn.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">LASSO</span>
+                            <span class="tech-tag">Classification Models</span>
+                            <span class="tech-tag">Predictive Analytics</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Neural Network Recommendation System</h3>
+                        <p>Designed and implemented three distinct recommendation systems for a clothing company using Neural Networks, improving personalization and customer engagement through advanced ML techniques.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Neural Networks</span>
+                            <span class="tech-tag">Recommendation Systems</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>SQL Airplane Crashes Database</h3>
+                        <p>Created a comprehensive SQL database for airplane crash analysis. Performed complex queries to extract meaningful insights and patterns from historical aviation incident data.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Database Design</span>
+                            <span class="tech-tag">Data Analysis</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Financial Micro-Learning App</h3>
+                        <p>Co-developed a TikTok-style financial education app for Silicon Valley investors. The platform delivers bite-sized financial news and facts with a scrolling interface, monetized through ads and data partnerships.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Mobile Development</span>
+                            <span class="tech-tag">UI/UX Design</span>
+                            <span class="tech-tag">FinTech</span>
+                            <span class="tech-tag">Business Model</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">View Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <div class="contact-content">
+                    <p>I'm actively seeking final-year internship opportunities, available to start in July 2026. Whether you have an opportunity, a question, or just want to connect, feel free to reach out!</p>
+                    <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
+                    <div class="social-links">
+                        <a href="https://github.com/alessandroiva" target="_blank">GitHub</a>
+                        <a href="https://linkedin.com/in/alessandroiva" target="_blank">LinkedIn</a>
+                        <a href="tel:+393486136439">Phone</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Alessandro Ivashkevich. Built with passion for data and innovation.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- FRENCH VERSION -->
+    <div id="lang-fr" class="lang-content">
+        <section class="hero">
+            <div class="container">
+                <h1>Alessandro Ivashkevich</h1>
+                <p class="tagline">Data Scientist & Passionné d'Analyse d'Affaires</p>
+                <p>Étudiant en MSc en Data Sciences & Business Analytics à l'ESSEC & CentraleSupélec. Passionné par la transformation de données brutes en insights actionnables et la création de solutions innovantes à l'intersection de la technologie et du business.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">Voir les Projets</a>
+                    <a href="#contact" class="btn">Me Contacter</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>À Propos de Moi</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+                    </div>
+                    <div class="about-text">
+                        <p>Bonjour ! Je suis Alessandro, étudiant en Data Sciences & Business Analytics à l'ESSEC & CentraleSupélec à Paris. Originaire d'Italie avec des racines russes, j'ai toujours été fasciné par l'intersection de la technologie, des données et de la stratégie d'entreprise.</p>
+                        <p>Je suis titulaire d'une licence en Management et Informatique de l'Université Luiss Guido Carli (GPA: 108/110) et j'ai été sélectionné pour le Programme International Honors de l'Université de Stanford, où j'ai étudié l'Optimisation Convexe, le Calcul Haute Performance et l'Entrepreneuriat Technologique.</p>
+                        <p>Ce qui me motive, c'est la curiosité et le désir de comprendre "pourquoi" les choses fonctionnent comme elles le font. J'aborde les problèmes comme des puzzles, transformant des données fragmentées en insights clairs et actionnables. Actuellement à la recherche d'opportunités de stage de fin d'études, disponible pour commencer en juillet 2026.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2>Expérience</h2>
+                <div class="experience-grid">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">
+                                <h3>Stagiaire Analyste de Données</h3>
+                                <div class="experience-company">Bordier | Genève, Suisse</div>
+                            </div>
+                            <div class="experience-period">Juillet 2025 – Août 2025</div>
+                        </div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Conception et amélioration de modèles Excel utilisés dans l'analyse mensuelle des fonds, réduisant le travail manuel de 80%</li>
+                                <li>Optimisation des modèles d'allocation d'actifs et de simulation Monte Carlo, réduisant le temps de traitement et améliorant la précision des prévisions</li>
+                                <li>Développement d'un agent IA qui a augmenté l'efficacité de la gestion du temps de plusieurs équipes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">
+                                <h3>Mathématicien IA Appliqué</h3>
+                                <div class="experience-company">Outlier | Paris, France</div>
+                            </div>
+                            <div class="experience-period">Février 2025 – Juin 2025</div>
+                        </div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Collaboration avec des équipes de recherche pour améliorer les performances des modèles IA</li>
+                                <li>Contribution au développement et à l'évaluation de modèles mathématiques avancés pour les applications IA</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2>Compétences & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Langages de Programmation</h3>
                         <ul>
-                            <li>Collaborating with research teams to improve AI models performance</li>
-                            <li>Contributing to the development and evaluation of advanced mathematical models for AI applications</li>
+                            <li>Python</li>
+                            <li>R</li>
+                            <li>SQL</li>
+                            <li>C++</li>
+                            <li>Spark</li>
+                            <li>MongoDB</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Outils d'Analyse de Données</h3>
+                        <ul>
+                            <li>Excel</li>
+                            <li>MATLAB</li>
+                            <li>n8n</li>
+                            <li>Azure</li>
+                            <li>KNIME</li>
+                            <li>Celonis</li>
+                            <li>SAS Studio</li>
+                            <li>Tableau</li>
+                            <li>Power BI</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Connaissances Spécialisées</h3>
+                        <ul>
+                            <li>Machine Learning & IA</li>
+                            <li>Business Intelligence</li>
+                            <li>Visualisation de Données</li>
+                            <li>Analyse Statistique</li>
+                            <li>Algorithmes d'Optimisation</li>
+                            <li>Logique Floue & Métaheuristiques</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Langues</h3>
+                        <ul>
+                            <li>Italien (Natif)</li>
+                            <li>Russe (Natif)</li>
+                            <li>Anglais (Courant)</li>
+                            <li>Français (Intermédiaire)</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <h2>Skills & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>R</li>
-                        <li>SQL</li>
-                        <li>C++</li>
-                        <li>Spark</li>
-                        <li>MongoDB</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Data & Analytics Tools</h3>
-                    <ul>
-                        <li>Excel</li>
-                        <li>MATLAB</li>
-                        <li>n8n</li>
-                        <li>Azure</li>
-                        <li>KNIME</li>
-                        <li>Celonis</li>
-                        <li>SAS Studio</li>
-                        <li>Tableau</li>
-                        <li>Power BI</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Specialized Knowledge</h3>
-                    <ul>
-                        <li>Machine Learning & AI</li>
-                        <li>Business Intelligence</li>
-                        <li>Data Visualization</li>
-                        <li>Statistical Analysis</li>
-                        <li>Optimization Algorithms</li>
-                        <li>Fuzzy Logic & Metaheuristics</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <ul>
-                        <li>Italian (Native)</li>
-                        <li>Russian (Native)</li>
-                        <li>English (Fluent)</li>
-                        <li>French (Intermediate)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section id="projects">
+            <div class="container">
+                <h2>Projets Principaux</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Thèse de Licence: Optimisation Long-Short Equities</h3>
+                        <p>Développé une approche innovante pour optimiser les portefeuilles d'actions long-short en utilisant la Logique Floue et des techniques métaheuristiques.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Logique Floue</span>
+                            <span class="tech-tag">Optimisation</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
+                    </div>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Bachelor's Thesis: Long-Short Equities Optimization</h3>
-                    <p>Developed an innovative approach to optimize long-short equity portfolios using Fuzzy Logic and metaheuristic techniques, combining advanced mathematical methods with practical financial applications.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Fuzzy Logic</span>
-                        <span class="tech-tag">Optimization</span>
-                        <span class="tech-tag">Financial Modeling</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/alessandroiva">GitHub →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>US Telecom Customer Churn Analysis</h3>
-                    <p>Built predictive models to forecast customer behavior and retention strategies using R. Applied multiple classification techniques including LASSO regression to identify key factors driving customer churn.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">R</span>
-                        <span class="tech-tag">LASSO</span>
-                        <span class="tech-tag">Classification Models</span>
-                        <span class="tech-tag">Predictive Analytics</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/alessandroiva">GitHub →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>Neural Network Recommendation System</h3>
-                    <p>Designed and implemented three distinct recommendation systems for a clothing company using Neural Networks, improving personalization and customer engagement through advanced ML techniques.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">Neural Networks</span>
-                        <span class="tech-tag">Recommendation Systems</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/alessandroiva">GitHub →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>SQL Airplane Crashes Database</h3>
-                    <p>Created a comprehensive SQL database for airplane crash analysis. Performed complex queries to extract meaningful insights and patterns from historical aviation incident data.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">SQL</span>
-                        <span class="tech-tag">Database Design</span>
-                        <span class="tech-tag">Data Analysis</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/alessandroiva">GitHub →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>Financial Micro-Learning App</h3>
-                    <p>Co-developed a TikTok-style financial education app for Silicon Valley investors. The platform delivers bite-sized financial news and facts with a scrolling interface, monetized through ads and data partnerships.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Mobile Development</span>
-                        <span class="tech-tag">UI/UX Design</span>
-                        <span class="tech-tag">FinTech</span>
-                        <span class="tech-tag">Business Model</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/alessandroiva">View Details →</a>
+                    <div class="project-card">
+                        <h3>Analyse du Taux d'Attrition Client Télécom US</h3>
+                        <p>Construit des modèles prédictifs pour prévoir le comportement des clients en utilisant R.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">LASSO</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-                <p>I'm actively seeking final-year internship opportunities, available to start in July 2026. Whether you have an opportunity, a question, or just want to connect, feel free to reach out!</p>
-                <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
-                <div class="social-links">
-                    <a href="https://github.com/alessandroiva" target="_blank">GitHub</a>
-                    <a href="https://linkedin.com/in/alessandroiva" target="_blank">LinkedIn</a>
-                    <a href="tel:+393486136439">Phone</a>
+        <section id="contact">
+            <div class="container">
+                <h2>Contactez-moi</h2>
+                <div class="contact-content">
+                    <p>Je recherche activement des opportunités de stage de fin d'études, disponible pour commencer en juillet 2026.</p>
+                    <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
+                    <div class="social-links">
+                        <a href="https://github.com/alessandroiva" target="_blank">GitHub</a>
+                        <a href="https://linkedin.com/in/alessandroiva" target="_blank">LinkedIn</a>
+                        <a href="tel:+393486136439">Téléphone</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Alessandro Ivashkevich. Built with passion for data and innovation.</p>
-        </div>
-    </footer>
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Alessandro Ivashkevich. Créé avec passion pour les données et l'innovation.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ITALIAN VERSION -->
+    <div id="lang-it" class="lang-content">
+        <section class="hero">
+            <div class="container">
+                <h1>Alessandro Ivashkevich</h1>
+                <p class="tagline">Data Scientist & Appassionato di Business Analytics</p>
+                <p>Studente MSc in Data Sciences & Business Analytics presso ESSEC & CentraleSupélec. Appassionato di trasformare dati grezzi in insight azionabili e creare soluzioni innovative all'intersezione tra tecnologia e business.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">Vedi Progetti</a>
+                    <a href="#contact" class="btn">Contattami</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>Chi Sono</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+                    </div>
+                    <div class="about-text">
+                        <p>Ciao! Sono Alessandro, studente di Data Sciences & Business Analytics presso ESSEC & CentraleSupélec a Parigi. Originario dell'Italia con eredità russa, sono sempre stato affascinato dall'intersezione tra tecnologia, dati e strategia aziendale.</p>
+                        <p>Ho conseguito una Laurea in Management e Informatica presso l'Università Luiss Guido Carli (GPA: 108/110) e sono stato selezionato per l'International Honors Program della Stanford University, dove ho studiato Ottimizzazione Convessa, High-Performance Computing e Technology Entrepreneurship.</p>
+                        <p>Ciò che mi motiva è la curiosità e il desiderio di capire il "perché" le cose funzionano come funzionano. Affronto i problemi come puzzle, trasformando dati frammentati in insight chiari e azionabili. Attualmente alla ricerca di opportunità di stage per l'ultimo anno, disponibile a iniziare a luglio 2026.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2>Esperienza</h2>
+                <div class="experience-grid">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">
+                                <h3>Stage Analista Dati</h3>
+                                <div class="experience-company">Bordier | Ginevra, Svizzera</div>
+                            </div>
+                            <div class="experience-period">Luglio 2025 – Agosto 2025</div>
+                        </div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Progettato e migliorato modelli Excel utilizzati nell'analisi mensile dei fondi, riducendo il lavoro manuale dell'80%</li>
+                                <li>Ottimizzato modelli di allocazione degli asset e simulazioni Monte Carlo, riducendo i tempi di elaborazione e migliorando l'accuratezza delle previsioni</li>
+                                <li>Sviluppato un agente IA che ha aumentato l'efficienza della gestione del tempo in diversi team</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">
+                                <h3>Matematico Applicato IA</h3>
+                                <div class="experience-company">Outlier | Parigi, Francia</div>
+                            </div>
+                            <div class="experience-period">Febbraio 2025 – Giugno 2025</div>
+                        </div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Collaborazione con team di ricerca per migliorare le prestazioni dei modelli IA</li>
+                                <li>Contributo allo sviluppo e alla valutazione di modelli matematici avanzati per applicazioni IA</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2>Competenze & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Linguaggi di Programmazione</h3>
+                        <ul>
+                            <li>Python</li>
+                            <li>R</li>
+                            <li>SQL</li>
+                            <li>C++</li>
+                            <li>Spark</li>
+                            <li>MongoDB</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Strumenti di Analisi Dati</h3>
+                        <ul>
+                            <li>Excel</li>
+                            <li>MATLAB</li>
+                            <li>n8n</li>
+                            <li>Azure</li>
+                            <li>KNIME</li>
+                            <li>Celonis</li>
+                            <li>SAS Studio</li>
+                            <li>Tableau</li>
+                            <li>Power BI</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Conoscenze Specializzate</h3>
+                        <ul>
+                            <li>Machine Learning & IA</li>
+                            <li>Business Intelligence</li>
+                            <li>Visualizzazione Dati</li>
+                            <li>Analisi Statistica</li>
+                            <li>Algoritmi di Ottimizzazione</li>
+                            <li>Logica Fuzzy & Metaeuristiche</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Lingue</h3>
+                        <ul>
+                            <li>Italiano (Madrelingua)</li>
+                            <li>Russo (Madrelingua)</li>
+                            <li>Inglese (Fluente)</li>
+                            <li>Francese (Intermedio)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>Progetti Principali</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Tesi di Laurea: Ottimizzazione Long-Short Equities</h3>
+                        <p>Sviluppato un approccio innovativo per ottimizzare portafogli azionari long-short utilizzando Logica Fuzzy e tecniche metaeuristiche.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Logica Fuzzy</span>
+                            <span class="tech-tag">Ottimizzazione</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Analisi Churn Clienti Telecom USA</h3>
+                        <p>Costruito modelli predittivi per prevedere il comportamento dei clienti utilizzando R.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">LASSO</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Contattami</h2>
+                <div class="contact-content">
+                    <p>Sto cercando attivamente opportunità di stage per l'ultimo anno, disponibile a iniziare a luglio 2026.</p>
+                    <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
+                    <div class="social-links">
+                        <a href="https://github.com/alessandroiva" target="_blank">GitHub</a>
+                        <a href="https://linkedin.com/in/alessandroiva" target="_blank">LinkedIn</a>
+                        <a href="tel:+393486136439">Telefono</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Alessandro Ivashkevich. Costruito con passione per i dati e l'innovazione.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- RUSSIAN VERSION -->
+    <div id="lang-ru" class="lang-content">
+        <section class="hero">
+            <div class="container">
+                <h1>Алессандро Ивашкевич</h1>
+                <p class="tagline">Data Scientist и энтузиаст бизнес-аналитики</p>
+                <p>Магистрант программы Data Sciences & Business Analytics в ESSEC & CentraleSupélec. Увлечён превращением сырых данных в практические инсайты и созданием инновационных решений на стыке технологий и бизнеса.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">Посмотреть проекты</a>
+                    <a href="#contact" class="btn">Связаться</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>Обо мне</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
+                    </div>
+                    <div class="about-text">
+                        <p>Привет! Я Алессандро, магистрант программы Data Sciences & Business Analytics в ESSEC & CentraleSupélec в Париже. Родом из Италии с русскими корнями, я всегда был увлечён пересечением технологий, данных и бизнес-стратегии.</p>
+                        <p>Я получил степень бакалавра по менеджменту и информатике в Университете Luiss Guido Carli (средний балл: 108/110) и был отобран для Международной программы отличников Стэнфордского университета, где изучал выпуклую оптимизацию, высокопроизводительные вычисления и технологическое предпринимательство.</p>
+                        <p>Меня движет любопытство и желание понять "почему" вещи работают именно так. Я подхожу к проблемам как к головоломкам, превращая фрагментированные данные в чёткие и практичные инсайты. В настоящее время ищу стажировку на последний год обучения, готов начать в июле 2026 года.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2>Опыт работы</h2>
+                <div class="experience-grid">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">
+                                <h3>Стажёр-аналитик данных</h3>
+                                <div class="experience-company">Bordier | Женева, Швейцария</div>
+                            </div>
+                            <div class="experience-period">Июль 2025 – Август 2025</div>
+                        </div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Разработал и улучшил шаблоны Excel для ежемесячного анализа фондов, сократив ручную работу на 80%</li>
+                                <li>Оптимизировал модели распределения активов и симуляции Монте-Карло, сократив время обработки и повысив точность прогнозов</li>
+                                <li>Разработал ИИ-агента, который повысил эффективность управления временем в нескольких командах</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <div class="experience-title">
+                                <h3>Прикладной математик ИИ</h3>
+                                <div class="experience-company">Outlier | Париж, Франция</div>
+                            </div>
+                            <div class="experience-period">Февраль 2025 – Июнь 2025</div>
+                        </div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Сотрудничество с исследовательскими командами для улучшения производительности моделей ИИ</li>
+                                <li>Вклад в разработку и оценку передовых математических моделей для приложений ИИ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2>Навыки и экспертиза</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Языки программирования</h3>
+                        <ul>
+                            <li>Python</li>
+                            <li>R</li>
+                            <li>SQL</li>
+                            <li>C++</li>
+                            <li>Spark</li>
+                            <li>MongoDB</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Инструменты анализа данных</h3>
+                        <ul>
+                            <li>Excel</li>
+                            <li>MATLAB</li>
+                            <li>n8n</li>
+                            <li>Azure</li>
+                            <li>KNIME</li>
+                            <li>Celonis</li>
+                            <li>SAS Studio</li>
+                            <li>Tableau</li>
+                            <li>Power BI</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Специализированные знания</h3>
+                        <ul>
+                            <li>Машинное обучение и ИИ</li>
+                            <li>Бизнес-аналитика</li>
+                            <li>Визуализация данных</li>
+                            <li>Статистический анализ</li>
+                            <li>Алгоритмы оптимизации</li>
+                            <li>Нечёткая логика и метаэвристика</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Языки</h3>
+                        <ul>
+                            <li>Итальянский (Родной)</li>
+                            <li>Русский (Родной)</li>
+                            <li>Английский (Свободный)</li>
+                            <li>Французский (Средний)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>Основные проекты</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Дипломная работа: Оптимизация Long-Short акций</h3>
+                        <p>Разработал инновационный подход к оптимизации портфелей акций long-short с использованием нечёткой логики и метаэвристических методов.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Нечёткая логика</span>
+                            <span class="tech-tag">Оптимизация</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Анализ оттока клиентов телеком США</h3>
+                        <p>Построил прогностические модели для прогнозирования поведения клиентов с использованием R.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">LASSO</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alessandroiva">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Связаться со мной</h2>
+                <div class="contact-content">
+                    <p>Активно ищу стажировку на последний год обучения, готов начать в июле 2026 года.</p>
+                    <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
+                    <div class="social-links">
+                        <a href="https://github.com/alessandroiva" target="_blank">GitHub</a>
+                        <a href="https://linkedin.com/in/alessandroiva" target="_blank">LinkedIn</a>
+                        <a href="tel:+393486136439">Телефон</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Алессандро Ивашкевич. Создано с страстью к данным и инновациям.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function changeLanguage(lang) {
+            // Hide all language content
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show selected language content
+            document.getElementById('lang-' + lang).classList.add('active');
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+    </script>
 </body>
 </html>
