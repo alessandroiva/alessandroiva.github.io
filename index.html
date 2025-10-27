@@ -407,47 +407,235 @@
             display: block;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid #2a2a2a;
+            color: #fff;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .mobile-menu-btn:hover {
+            border-color: #fff;
+        }
+
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            /* Navigation */
+            nav .container {
+                flex-wrap: wrap;
+            }
+
+            .nav-right {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #1a1a1a;
+            }
+
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .language-switcher {
+                gap: 8px;
+            }
+
+            .lang-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+
+            /* Hero */
+            .hero {
+                min-height: 80vh;
+                padding: 60px 0;
+            }
+
             .hero h1 {
-                font-size: 40px;
+                font-size: 36px;
+                margin-bottom: 15px;
             }
 
             .hero .tagline {
                 font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .hero p {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            /* Sections */
+            section {
+                padding: 60px 0;
             }
 
             h2 {
                 font-size: 32px;
+                margin-bottom: 40px;
             }
 
+            /* About */
             .about-content {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
 
-            .nav-right {
-                flex-direction: column;
-                gap: 15px;
+            .about-text p {
+                font-size: 16px;
             }
 
-            .nav-links {
-                gap: 15px;
+            /* Skills */
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
-            .nav-links a {
-                font-size: 12px;
+            /* Experience */
+            .experience-grid {
+                gap: 30px;
             }
 
-            .cta-buttons {
-                flex-direction: column;
+            .experience-item {
+                padding: 20px;
             }
 
             .experience-header {
                 flex-direction: column;
+                gap: 5px;
+            }
+
+            .experience-title h3 {
+                font-size: 20px;
+            }
+
+            .experience-company {
+                font-size: 16px;
             }
 
             .experience-period {
                 text-align: left;
+                margin-top: 5px;
+            }
+
+            /* Projects */
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .project-card {
+                padding: 25px;
+            }
+
+            .project-card h3 {
+                font-size: 20px;
+            }
+
+            /* Buttons */
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Contact */
+            .contact-email {
+                font-size: 20px;
+                word-break: break-all;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            .logo {
+                font-size: 20px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero .tagline {
+                font-size: 16px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+                letter-spacing: 0.5px;
+            }
+
+            .language-switcher {
+                gap: 6px;
+            }
+
+            .lang-btn {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+
+            .experience-item,
+            .project-card {
+                padding: 20px 15px;
+            }
+
+            .experience-title h3,
+            .project-card h3 {
+                font-size: 18px;
+            }
+
+            .contact-email {
+                font-size: 18px;
+            }
+
+            .tech-stack {
+                gap: 8px;
+            }
+
+            .tech-tag {
+                padding: 4px 10px;
+                font-size: 11px;
+            }
+
+            section {
+                padding: 50px 0;
             }
         }
     </style>
