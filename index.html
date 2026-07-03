@@ -3,1789 +3,1721 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alessandro Ivashkevich - Portfolio</title>
+<title>Alessandro Ivashkevich — AI & Data Science Portfolio</title>
+<meta name="description" content="Alessandro Ivashkevich — MSc Data Science & Business Analytics at ESSEC & CentraleSupélec. AI agents, machine learning, optimization. Open to final-year internships from September 2026.">
+<meta property="og:title" content="Alessandro Ivashkevich — AI & Data Science Portfolio">
+<meta property="og:description" content="AI agents, machine learning research, and optimization projects. Available for a final-year internship from September 2026.">
+<meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  :root {
+    --bg: #05060f;
+    --bg-soft: #0b0d1d;
+    --card: rgba(255, 255, 255, 0.035);
+    --card-hover: rgba(255, 255, 255, 0.06);
+    --border: rgba(255, 255, 255, 0.09);
+    --border-hover: rgba(129, 140, 248, 0.55);
+    --text: #e9ecf8;
+    --muted: #9aa3c2;
+    --faint: #6b7394;
+    --a1: #38bdf8;
+    --a2: #818cf8;
+    --a3: #e879f9;
+    --grad: linear-gradient(100deg, var(--a1), var(--a2) 50%, var(--a3));
+    --font-head: 'Space Grotesk', -apple-system, sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: #0a0a0a;
-    color: #e0e0e0;
-    line-height: 1.6;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
   }
 
+  ::selection { background: rgba(129, 140, 248, 0.4); }
+
+  /* ---------- Background layers ---------- */
+  #stars {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+  }
+
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.35;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .orb-1 {
+    width: 55vmax; height: 55vmax;
+    top: -20vmax; left: -15vmax;
+    background: radial-gradient(circle, rgba(56,189,248,0.5), transparent 65%);
+    animation: drift1 26s ease-in-out infinite alternate;
+  }
+  .orb-2 {
+    width: 50vmax; height: 50vmax;
+    bottom: -20vmax; right: -12vmax;
+    background: radial-gradient(circle, rgba(232,121,249,0.4), transparent 65%);
+    animation: drift2 32s ease-in-out infinite alternate;
+  }
+  .orb-3 {
+    width: 35vmax; height: 35vmax;
+    top: 40%; left: 55%;
+    background: radial-gradient(circle, rgba(129,140,248,0.35), transparent 65%);
+    animation: drift1 38s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes drift1 {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(8vmax, 6vmax) scale(1.15); }
+  }
+  @keyframes drift2 {
+    from { transform: translate(0, 0) scale(1.1); }
+    to   { transform: translate(-7vmax, -8vmax) scale(0.95); }
+  }
+
+  .cursor-glow {
+    position: fixed;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(129,140,248,0.10), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s;
+    opacity: 0;
+  }
+
+  /* ---------- Layout ---------- */
   .container {
-    max-width: 1200px;
+    max-width: 1160px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
   }
 
-  /* Navigation */
+  section { padding: 110px 0; scroll-margin-top: 90px; }
+
+  .section-head { margin-bottom: 56px; }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--a2);
+    display: block;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: var(--font-head);
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .grad-text {
+    background: var(--grad);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: sheen 6s linear infinite;
+  }
+  @keyframes sheen {
+    to { background-position: 200% center; }
+  }
+
+  /* ---------- Nav ---------- */
   nav {
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    background-color: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0; left: 0; right: 0;
     z-index: 100;
-    border-bottom: 1px solid #1a1a1a;
+    background: rgba(5, 6, 15, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
   }
-
+  .progress {
+    position: absolute;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--grad);
+  }
   nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    gap: 16px;
   }
-
   .logo {
-    font-size: 24px;
+    font-family: var(--font-head);
     font-weight: 700;
-    color: #fff;
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: #e0e0e0;
+    font-size: 20px;
+    color: var(--text);
     text-decoration: none;
-    transition: color 0.3s;
-    font-size: 14px;
+    white-space: nowrap;
+  }
+  .logo span { color: var(--a2); }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: 500;
+    transition: color 0.25s;
+    position: relative;
   }
-
-  .nav-links a:hover {
-    color: #fff;
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 0; height: 2px;
+    background: var(--grad);
+    transition: width 0.25s;
   }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-  /* Language Switcher */
-  .language-switcher {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
+  .language-switcher { display: flex; gap: 6px; }
   .lang-btn {
-    padding: 6px 12px;
+    padding: 5px 11px;
     background: transparent;
-    border: 1px solid #2a2a2a;
-    color: #888;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--faint);
     cursor: pointer;
-    font-size: 12px;
-    transition: all 0.3s;
-    text-transform: uppercase;
+    font-family: var(--font-mono);
+    font-size: 11px;
     letter-spacing: 1px;
+    transition: all 0.25s;
   }
-
-  .lang-btn:hover {
-    border-color: #fff;
-    color: #fff;
-  }
-
+  .lang-btn:hover { border-color: var(--a2); color: var(--text); }
   .lang-btn.active {
-    background: #fff;
-    color: #0a0a0a;
-    border-color: #fff;
+    background: var(--grad);
+    color: #05060f;
+    border-color: transparent;
+    font-weight: 500;
   }
 
-  /* Hero Section */
+  /* ---------- Hero ---------- */
   .hero {
+    position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 100px 0;
+    padding: 140px 0 80px;
   }
-
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--a1);
+    margin-bottom: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 12px #4ade80;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
   .hero h1 {
-    font-size: 64px;
+    font-family: var(--font-head);
+    font-size: clamp(44px, 8vw, 88px);
     font-weight: 700;
-    margin-bottom: 20px;
-    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 18px;
   }
-
-  .hero .tagline {
-    font-size: 24px;
-    color: #888;
-    margin-bottom: 30px;
+  .hero-role {
+    font-family: var(--font-mono);
+    font-size: clamp(17px, 2.5vw, 24px);
+    color: var(--muted);
+    margin-bottom: 26px;
+    min-height: 1.6em;
   }
-
-  .hero p {
+  .hero-role .typed { color: var(--text); }
+  .hero-role .caret {
+    display: inline-block;
+    width: 2px;
+    background: var(--a3);
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero-tagline {
+    max-width: 640px;
     font-size: 18px;
-    max-width: 600px;
-    margin: 0 auto 40px;
-    color: #b0b0b0;
+    color: var(--muted);
+    margin-bottom: 42px;
   }
-
-  .cta-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-  }
-
+  .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn {
-    padding: 12px 30px;
-    border: 2px solid #fff;
-    background: transparent;
-    color: #fff;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
     text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s;
+    transition: transform 0.25s, box-shadow 0.25s, background 0.25s, color 0.25s;
     cursor: pointer;
+    display: inline-block;
   }
-
-  .btn:hover {
-    background: #fff;
-    color: #0a0a0a;
-  }
-
   .btn-primary {
-    background: #fff;
-    color: #0a0a0a;
+    background: var(--grad);
+    background-size: 200% auto;
+    color: #05060f;
   }
-
   .btn-primary:hover {
-    background: transparent;
-    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 34px rgba(129, 140, 248, 0.4);
+    background-position: right center;
+  }
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--card);
+  }
+  .btn-ghost:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-hover);
+    background: var(--card-hover);
   }
 
-  /* Section Styles */
-  section {
-    padding: 100px 0;
-    border-bottom: 1px solid #1a1a1a;
-  }
-
-  h2 {
-    font-size: 48px;
-    margin-bottom: 60px;
-    text-align: center;
-    color: #fff;
-  }
-
-  /* About Section */
-  .about-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 60px;
-    align-items: center;
-  }
-
-  .about-image {
-    width: 100%;
-    aspect-ratio: 1;
-    background: #1a1a1a;
-    border: 2px solid #2a2a2a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
-    overflow: hidden;
-  }
-
-  .about-text p {
-    margin-bottom: 20px;
-    font-size: 18px;
-    color: #b0b0b0;
-  }
-
-  /* Skills Section */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-  }
-
-  .skill-category h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #fff;
-  }
-
-  .skill-category ul {
-    list-style: none;
-  }
-
-  .skill-category li {
-    padding: 10px 0;
-    color: #b0b0b0;
-    border-bottom: 1px solid #1a1a1a;
-  }
-
-  /* Experience Section */
-  .experience-grid {
+  .scroll-hint {
+    position: absolute;
+    bottom: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--faint);
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    max-width: 900px;
-    margin: 0 auto;
+    align-items: center;
+    gap: 8px;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(var(--a2), transparent);
+    animation: fall 1.8s ease-in-out infinite;
+  }
+  @keyframes fall {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
   }
 
-  .experience-item {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    padding: 30px;
+  /* ---------- Stats ---------- */
+  .stats {
+    padding: 0 0 30px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 24px;
+    backdrop-filter: blur(10px);
     transition: transform 0.3s, border-color 0.3s;
   }
+  .stat:hover { transform: translateY(-4px); border-color: var(--border-hover); }
+  .stat-value {
+    font-family: var(--font-head);
+    font-size: 42px;
+    font-weight: 700;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .stat-label { font-size: 14px; color: var(--muted); }
 
-  .experience-item:hover {
-    transform: translateX(5px);
-    border-color: #fff;
+  /* ---------- About ---------- */
+  .about-content {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .about-photo {
+    position: relative;
+    border-radius: 22px;
+    padding: 3px;
+    background: var(--grad);
+    background-size: 300% 300%;
+    animation: sheen 8s linear infinite;
+  }
+  .about-photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 19px;
+  }
+  .about-text p { margin-bottom: 20px; font-size: 17px; color: var(--muted); }
+  .about-text p strong { color: var(--text); font-weight: 600; }
+  .values { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    transition: all 0.25s;
+  }
+  .chip:hover { border-color: var(--a2); color: var(--text); transform: translateY(-2px); }
+
+  /* ---------- Timeline (experience) ---------- */
+  .timeline { position: relative; max-width: 860px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(var(--a1), var(--a2), var(--a3));
+    opacity: 0.4;
+  }
+  .timeline-item {
+    position: relative;
+    padding-left: 52px;
+    margin-bottom: 44px;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--a2);
+    box-shadow: 0 0 16px rgba(129, 140, 248, 0.6);
+  }
+  .timeline-dot::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: var(--grad);
+  }
+  .xp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 30px 32px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  .xp-card:hover {
+    transform: translateX(6px);
+    border-color: var(--border-hover);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  }
+  .xp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .xp-role { font-family: var(--font-head); font-size: 22px; font-weight: 600; }
+  .xp-period {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--a1);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .xp-company { color: var(--a2); font-weight: 600; font-size: 15px; margin-bottom: 16px; }
+  .xp-company span { color: var(--faint); font-weight: 400; }
+  .xp-card ul { list-style: none; }
+  .xp-card li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 10px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .xp-card li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--a3);
   }
 
-  .experience-header {
+  /* ---------- Education ---------- */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 30px 28px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .edu-card:hover { transform: translateY(-6px); border-color: var(--border-hover); }
+  .edu-period {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--a1);
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  .edu-school { font-family: var(--font-head); font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  .edu-degree { color: var(--a2); font-size: 15px; font-weight: 500; margin-bottom: 14px; }
+  .edu-card ul { list-style: none; margin-top: auto; }
+  .edu-card li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .edu-card li::before { content: '▹'; position: absolute; left: 0; color: var(--a3); }
+
+  /* ---------- Projects ---------- */
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+  .filter-btn {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.5px;
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .filter-btn:hover { border-color: var(--a2); color: var(--text); }
+  .filter-btn.active {
+    background: var(--grad);
+    color: #05060f;
+    border-color: transparent;
+    font-weight: 500;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 22px;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, opacity 0.35s;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .project-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  }
+  .project-card.hide { display: none; }
+  .project-top {
     display: flex;
     justify-content: space-between;
     align-items: start;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
+    margin-bottom: 12px;
   }
-
-  .experience-title h3 {
-    font-size: 24px;
-    color: #fff;
-    margin-bottom: 5px;
+  .project-card h3 {
+    font-family: var(--font-head);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.3;
   }
-
-  .experience-company {
-    font-size: 18px;
-    color: #888;
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
-
-  .experience-period {
+  .badge-gold {
+    background: linear-gradient(100deg, #fbbf24, #f59e0b);
+    color: #1c1400;
+    font-weight: 500;
+  }
+  .badge-violet {
+    background: rgba(129, 140, 248, 0.18);
+    border: 1px solid rgba(129, 140, 248, 0.5);
+    color: #b4bcfb;
+  }
+  .badge-green {
+    background: rgba(74, 222, 128, 0.14);
+    border: 1px solid rgba(74, 222, 128, 0.45);
+    color: #86efac;
+  }
+  .project-card p { color: var(--muted); font-size: 14.5px; margin-bottom: 20px; flex-grow: 1; }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .tech-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    color: #7dd3fc;
+  }
+  .project-links a {
+    color: var(--text);
+    text-decoration: none;
     font-size: 14px;
-    color: #666;
-    text-align: right;
+    font-weight: 600;
+    transition: color 0.25s;
   }
+  .project-links a:hover { color: var(--a3); }
 
-  .experience-description {
-    color: #b0b0b0;
-    line-height: 1.8;
-  }
-
-  .experience-description ul {
-    margin-top: 10px;
-    padding-left: 20px;
-  }
-
-  .experience-description li {
-    margin-bottom: 8px;
-  }
-
-  /* Projects Section */
-  .projects-grid {
+  /* ---------- Skills ---------- */
+  .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
   }
-
-  .project-card {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    padding: 30px;
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
     transition: transform 0.3s, border-color 0.3s;
   }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-    border-color: #fff;
-  }
-
-  .project-card h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #fff;
-  }
-
-  .project-card p {
-    color: #888;
-    margin-bottom: 20px;
-  }
-
-  .tech-stack {
+  .skill-card:hover { transform: translateY(-5px); border-color: var(--border-hover); }
+  .skill-card h3 {
+    font-family: var(--font-head);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 18px;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
   }
-
-  .tech-tag {
-    padding: 5px 15px;
-    background: #0a0a0a;
-    border: 1px solid #2a2a2a;
+  .skill-card h3 .ico { font-size: 20px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tags .tech-tag {
+    background: rgba(129, 140, 248, 0.08);
+    border-color: rgba(129, 140, 248, 0.25);
+    color: #b4bcfb;
     font-size: 12px;
-    color: #b0b0b0;
+    padding: 6px 13px;
   }
 
-  .project-links {
-    display: flex;
-    gap: 15px;
+  /* ---------- Honors ---------- */
+  .honors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
   }
-
-  .project-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s;
+  .honor-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 26px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, border-color 0.3s;
   }
-
-  .project-links a:hover {
-    color: #888;
+  .honor-card:hover { transform: translateY(-5px); border-color: var(--border-hover); }
+  .honor-year {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--a1);
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
   }
+  .honor-card h3 { font-family: var(--font-head); font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .honor-card p { color: var(--muted); font-size: 14px; }
 
-  /* Contact Section */
-  .contact-content {
-    max-width: 600px;
+  /* ---------- Contact ---------- */
+  .contact-box {
+    max-width: 720px;
     margin: 0 auto;
     text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 26px;
+    padding: 64px 40px;
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
   }
-
-  .contact-content p {
-    font-size: 18px;
-    color: #b0b0b0;
-    margin-bottom: 40px;
+  .contact-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--grad);
   }
-
+  .contact-box h2 { margin-bottom: 18px; }
+  .contact-box > p { color: var(--muted); font-size: 17px; margin-bottom: 36px; }
   .contact-email {
-    font-size: 24px;
-    color: #fff;
+    display: inline-block;
+    font-family: var(--font-head);
+    font-size: clamp(17px, 3.4vw, 24px);
+    font-weight: 600;
+    color: var(--text);
     text-decoration: none;
-    display: block;
-    margin-bottom: 40px;
-    transition: color 0.3s;
+    margin-bottom: 36px;
+    background: var(--grad);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    transition: filter 0.25s;
+    word-break: break-all;
   }
-
-  .contact-email:hover {
-    color: #888;
-  }
-
-  .social-links {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-  }
-
+  .contact-email:hover { filter: brightness(1.3); }
+  .social-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .social-links a {
-    color: #b0b0b0;
+    color: var(--muted);
     text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 11px 24px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.25s;
   }
-
   .social-links a:hover {
-    color: #fff;
+    color: var(--text);
+    border-color: var(--border-hover);
+    transform: translateY(-3px);
   }
 
-  /* Footer */
   footer {
-    padding: 40px 0;
+    padding: 44px 0;
     text-align: center;
-    color: #666;
+    color: var(--faint);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
   }
 
-  /* Hidden language sections */
-  .lang-content {
-    display: none;
+  /* ---------- Reveal on scroll ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
+  .reveal.in { opacity: 1; transform: none; }
 
-  .lang-content.active {
-    display: block;
-  }
-
-  /* Mobile Menu */
-  .mobile-menu-btn {
+  /* ---------- Responsive ---------- */
+  .mobile-toggle {
     display: none;
     background: transparent;
-    border: 1px solid #2a2a2a;
-    color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
     padding: 8px 12px;
-    cursor: pointer;
     font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
   }
 
-  .mobile-menu-btn:hover {
-    border-color: #fff;
-  }
-
-  /* Responsive */
-  @media (max-width: 968px) {
-    .container {
-      padding: 0 15px;
-    }
-
-    /* Navigation */
-    nav .container {
-      flex-wrap: wrap;
-    }
-
-    .nav-right {
-      width: 100%;
-      justify-content: space-between;
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px solid #1a1a1a;
-    }
-
+  @media (max-width: 940px) {
     .nav-links {
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      font-size: 11px;
-    }
-
-    .language-switcher {
-      gap: 8px;
-    }
-
-    .lang-btn {
-      padding: 5px 10px;
-      font-size: 11px;
-    }
-
-    /* Hero */
-    .hero {
-      min-height: 80vh;
-      padding: 60px 0;
-    }
-
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 15px;
-    }
-
-    .hero .tagline {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 16px;
-      margin-bottom: 30px;
-    }
-
-    /* Sections */
-    section {
-      padding: 60px 0;
-    }
-
-    h2 {
-      font-size: 32px;
-      margin-bottom: 40px;
-    }
-
-    /* About */
-    .about-content {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
-    .about-text p {
-      font-size: 16px;
-    }
-
-    /* Skills */
-    .skills-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
-    /* Experience */
-    .experience-grid {
-      gap: 30px;
-    }
-
-    .experience-item {
-      padding: 20px;
-    }
-
-    .experience-header {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
       flex-direction: column;
-      gap: 5px;
+      gap: 0;
+      background: rgba(5, 6, 15, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 24px 18px;
     }
+    .nav-links.open { display: flex; }
+    .nav-links a { display: block; padding: 12px 0; font-size: 14px; }
+    .nav-links a::after { display: none; }
+    .mobile-toggle { display: block; }
+    .nav-right { gap: 14px; }
 
-    .experience-title h3 {
-      font-size: 20px;
-    }
-
-    .experience-company {
-      font-size: 16px;
-    }
-
-    .experience-period {
-      text-align: left;
-      margin-top: 5px;
-    }
-
-    /* Projects */
-    .projects-grid {
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-
-    .project-card {
-      padding: 25px;
-    }
-
-    .project-card h3 {
-      font-size: 20px;
-    }
-
-    /* Buttons */
-    .cta-buttons {
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .btn {
-      width: 100%;
-      text-align: center;
-    }
-
-    /* Contact */
-    .contact-email {
-      font-size: 20px;
-      word-break: break-all;
-    }
-
-    .social-links {
-      flex-wrap: wrap;
-      gap: 20px;
-    }
+    .about-content { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo { max-width: 320px; }
+    section { padding: 80px 0; }
+    .hero { padding-top: 120px; }
+    .timeline-item { padding-left: 42px; }
+    .xp-card { padding: 24px 22px; }
+    .xp-card:hover { transform: none; }
+    .contact-box { padding: 48px 24px; }
   }
 
-  @media (max-width: 480px) {
-    /* Extra small screens */
-    .logo {
-      font-size: 20px;
-    }
+  @media (max-width: 520px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat { padding: 20px 16px; }
+    .stat-value { font-size: 30px; }
+    .stat-label { font-size: 12px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .cta-buttons .btn { width: 100%; text-align: center; }
+    .language-switcher { gap: 4px; }
+    .lang-btn { padding: 4px 8px; font-size: 10px; }
+    .logo { font-size: 17px; }
+    .scroll-hint { display: none; }
+  }
 
-    .hero h1 {
-      font-size: 28px;
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
-
-    .hero .tagline {
-      font-size: 16px;
-    }
-
-    .hero p {
-      font-size: 14px;
-    }
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 30px;
-    }
-
-    .nav-links {
-      gap: 12px;
-    }
-
-    .nav-links a {
-      font-size: 10px;
-      letter-spacing: 0.5px;
-    }
-
-    .language-switcher {
-      gap: 6px;
-    }
-
-    .lang-btn {
-      padding: 4px 8px;
-      font-size: 10px;
-    }
-
-    .experience-item,
-    .project-card {
-      padding: 20px 15px;
-    }
-
-    .experience-title h3,
-    .project-card h3 {
-      font-size: 18px;
-    }
-
-    .contact-email {
-      font-size: 18px;
-    }
-
-    .tech-stack {
-      gap: 8px;
-    }
-
-    .tech-tag {
-      padding: 4px 10px;
-      font-size: 11px;
-    }
-
-    section {
-      padding: 50px 0;
-    }
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
-<!-- Navigation -->
+<canvas id="stars"></canvas>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
 <nav>
+  <div class="progress" id="progress"></div>
   <div class="container">
-    <div class="logo">Alessandro Ivashkevich</div>
+    <a class="logo" href="#top">Alessandro<span>.iva</span></a>
     <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="#about" data-translate="nav-about">About</a></li>
-        <li><a href="#experience" data-translate="nav-experience">Experience</a></li>
-        <li><a href="#skills" data-translate="nav-skills">Skills</a></li>
-        <li><a href="#projects" data-translate="nav-projects">Projects</a></li>
-        <li><a href="#contact" data-translate="nav-contact">Contact</a></li>
-      </ul>
+      <ul class="nav-links" id="navLinks"></ul>
       <div class="language-switcher">
-        <button class="lang-btn active" data-lang="en" onclick="changeLanguage('en')">EN</button>
-        <button class="lang-btn" data-lang="fr" onclick="changeLanguage('fr')">FR</button>
-        <button class="lang-btn" data-lang="it" onclick="changeLanguage('it')">IT</button>
-        <button class="lang-btn" data-lang="ru" onclick="changeLanguage('ru')">RU</button>
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
       </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
     </div>
   </div>
 </nav>
 
-<!-- ENGLISH VERSION -->
-<div id="lang-en" class="lang-content active">
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <h1>Alessandro Ivashkevich</h1>
-      <p class="tagline">Data Scientist & Business Analytics Enthusiast</p>
-      <p>MSc student in Data Sciences & Business Analytics at ESSEC & CentraleSupélec. Passionate about transforming raw data into actionable insights and building innovative solutions at the intersection of technology and business.</p>
-      <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn">Get In Touch</a>
-      </div>
-    </div>
-  </section>
+<main id="app"></main>
 
-  <!-- About Section -->
-  <section id="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <div class="about-content">
-        <div class="about-image">
-          <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
-        </div>
-        <div class="about-text">
-          <p>Hello! I'm Alessandro, a Data Sciences & Business Analytics graduate student at ESSEC & CentraleSupélec in Paris. Originally from Italy with Russian heritage, I've always been fascinated by the intersection of technology, data, and business strategy.</p>
-          <p>I hold a Bachelor's degree in Management and Computer Science from Luiss Guido Carli (GPA: 108/110) and was selected for Stanford University's International Honors Program, where I studied Convex Optimization, High-Performance Computing, and Technology Entrepreneurship.</p>
-          <p>What drives me is curiosity and the desire to understand "why" things work the way they do. I approach problems like puzzles, transforming fragmented data into clear, actionable insights. Currently seeking final-year internship opportunities, available to start in July 2026.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience">
-    <div class="container">
-      <h2>Experience</h2>
-      <div class="experience-grid">
-        <div class="experience-item">
-          <div class="experience-header">
-            <div class="experience-title">
-              <h3>Data Analyst Summer Intern</h3>
-              <div class="experience-company">Bordier | Geneva, Switzerland</div>
-            </div>
-            <div class="experience-period">July 2025 – August 2025</div>
-          </div>
-          <div class="experience-description">
-            <ul>
-              <li>Designed and enhanced Excel-based templates used in monthly fund analysis, reducing manual work by 80%</li>
-              <li>Optimized asset allocation and Monte Carlo simulation models, cutting processing time and improving forecast accuracy</li>
-              <li>Developed an AI agent that increased time management efficiency across several teams</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="experience-item">
-          <div class="experience-header">
-            <div class="experience-title">
-              <h3>AI Applied Mathematician</h3>
-              <div class="experience-company">Outlier | Paris, France</div>
-            </div>
-            <div class="experience-period">February 2025 – June 2025</div>
-          </div>
-          <div class="experience-description">
-            <ul>
-              <li>Collaborating with research teams to improve AI models performance</li>
-              <li>Contributing to the development and evaluation of advanced mathematical models for AI applications</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills">
-    <div class="container">
-      <h2>Skills & Expertise</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Programming Languages</h3>
-          <ul>
-            <li>Python</li>
-            <li>R</li>
-            <li>SQL</li>
-            <li>C++</li>
-            <li>Spark</li>
-            <li>MongoDB</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Data & Analytics Tools</h3>
-          <ul>
-            <li>Excel</li>
-            <li>MATLAB</li>
-            <li>n8n</li>
-            <li>Azure</li>
-            <li>KNIME</li>
-            <li>Celonis</li>
-            <li>SAS Studio</li>
-            <li>Tableau</li>
-            <li>Power BI</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Specialized Knowledge</h3>
-          <ul>
-            <li>Machine Learning & AI</li>
-            <li>Business Intelligence</li>
-            <li>Data Visualization</li>
-            <li>Statistical Analysis</li>
-            <li>Optimization Algorithms</li>
-            <li>Fuzzy Logic & Metaheuristics</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Languages</h3>
-          <ul>
-            <li>Italian (Native)</li>
-            <li>Russian (Native)</li>
-            <li>English (Fluent)</li>
-            <li>French (Intermediate)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="container">
-      <h2>Featured Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Hackathon Eleven Strategy - Park Wait Forecasting</h3>
-          <p>A forecasting pipeline for amusement-park operations that predicts next-week attendance and ride wait times, feeding business dashboards for staffing, queue management, and guest experience. Built data preparation pipeline from historical attendance, waiting times, and weather data, with attendance forecasting and per-attraction wait time models. Delivered three frontend dashboard modules for operational decision-making.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">XGBoost</span>
-            <span class="tech-tag">scikit-learn</span>
-            <span class="tech-tag">Gradient Boosting</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Jupyter</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Artur-Gar/Hackathon-Eleven-Strategy" target="_blank">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>LangGraph Pharma Marketing</h3>
-          <p>A GenAI solution for generating compliant marketing phrases for pharmaceutical products using a multi-agent LangGraph system. Features RAG retrieval, automatic compliance validation, and persona-targeted marketing generation for various demographics.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">LangGraph</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">OpenAI GPT-4</span>
-            <span class="tech-tag">ChromaDB</span>
-            <span class="tech-tag">RAG</span>
-            <span class="tech-tag">Streamlit</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>RiskGraph</h3>
-          <p>A LangGraph-based risk assessment and analysis application that performs intelligent risk analysis with vector storage capabilities. Features professional PDF generation with LaTeX, FAISS integration for document retrieval, and asynchronous workflows for optimized performance.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">LangGraph</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">OpenAI</span>
-            <span class="tech-tag">FAISS</span>
-            <span class="tech-tag">Streamlit</span>
-            <span class="tech-tag">Docker</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Bachelor's Thesis: Long-Short Equities Optimization</h3>
-          <p>Developed an innovative approach to optimize long-short equity portfolios using Fuzzy Logic and metaheuristic techniques, combining advanced mathematical methods with practical financial applications.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Fuzzy Logic</span>
-            <span class="tech-tag">Optimization</span>
-            <span class="tech-tag">Financial Modeling</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>US Telecom Customer Churn Analysis</h3>
-          <p>Built predictive models to forecast customer behavior and retention strategies using R. Applied multiple classification techniques including LASSO regression to identify key factors driving customer churn.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">R</span>
-            <span class="tech-tag">LASSO</span>
-            <span class="tech-tag">Classification Models</span>
-            <span class="tech-tag">Predictive Analytics</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Neural Network Recommendation System</h3>
-          <p>Designed and implemented three distinct recommendation systems for a clothing company using Neural Networks, improving personalization and customer engagement through advanced ML techniques.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">TensorFlow</span>
-            <span class="tech-tag">Neural Networks</span>
-            <span class="tech-tag">Recommendation Systems</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>SQL Airplane Crashes Database</h3>
-          <p>Created a comprehensive SQL database for airplane crash analysis. Performed complex queries to extract meaningful insights and patterns from historical aviation incident data.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">SQL</span>
-            <span class="tech-tag">Database Design</span>
-            <span class="tech-tag">Data Analysis</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Financial Micro-Learning App</h3>
-          <p>Co-developed a TikTok-style financial education app for Silicon Valley investors. The platform delivers bite-sized financial news and facts with a scrolling interface, monetized through ads and data partnerships.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Mobile Development</span>
-            <span class="tech-tag">UI/UX Design</span>
-            <span class="tech-tag">FinTech</span>
-            <span class="tech-tag">Business Model</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">View Details →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <h2>Get In Touch</h2>
-      <div class="contact-content">
-        <p>I'm actively seeking final-year internship opportunities, available to start in July 2026. Whether you have an opportunity, a question, or just want to connect, feel free to reach out!</p>
-        <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
-        <div class="social-links">
-          <a href="https://github.com/alessandroiva" target="_blank">GitHub</a>
-          <a href="https://linkedin.com/in/alessandroiva" target="_blank">LinkedIn</a>
-          <a href="tel:+393486136439">Phone</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Alessandro Ivashkevich. Built with passion for data and innovation.</p>
-    </div>
-  </footer>
-</div>
-
-<!-- FRENCH VERSION -->
-<div id="lang-fr" class="lang-content">
-  <section class="hero">
-    <div class="container">
-      <h1>Alessandro Ivashkevich</h1>
-      <p class="tagline">Data scientist, passionné de business analytics</p>
-      <p>Étudiant en master de data science et business analytics à l’ESSEC et CentraleSupélec. J’aime transformer des données brutes en insights actionnables et concevoir des solutions à l’intersection de la tech et du business.</p>
-      <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">Voir les projets</a>
-        <a href="#contact" class="btn">Me contacter</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container">
-      <h2>À propos</h2>
-      <div class="about-content">
-        <div class="about-image">
-          <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
-        </div>
-        <div class="about-text">
-          <p>Bonjour ! Je suis Alessandro, étudiant en master de data science et business analytics à l’ESSEC et CentraleSupélec (Paris). Italien d’origine et de culture russo‑italienne, je suis passionné par le croisement entre technologie, données et stratégie.</p>
-          <p>Titulaire d’une licence en management et informatique (Luiss Guido Carli, moyenne : 108/110), j’ai été sélectionné pour l’International Honors Program de Stanford, où j’ai étudié l’optimisation convexe, le calcul haute performance et l’entrepreneuriat technologique.</p>
-          <p>La curiosité et l’envie de comprendre le « pourquoi » me guident. J’aborde les problèmes comme des énigmes, en transformant des données fragmentées en décisions claires et utiles. Je recherche un stage de fin d’études, disponible à partir de juillet 2026.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="container">
-      <h2>Expérience</h2>
-      <div class="experience-grid">
-        <div class="experience-item">
-          <div class="experience-header">
-            <div class="experience-title">
-              <h3>Stagiaire Data Analyst</h3>
-              <div class="experience-company">Bordier | Genève, Suisse</div>
-            </div>
-            <div class="experience-period">Juillet 2025 – Août 2025</div>
-          </div>
-          <div class="experience-description">
-            <ul>
-              <li>Conçu et amélioré des modèles Excel pour l’analyse mensuelle des fonds, réduisant le travail manuel de 80 %</li>
-              <li>Optimisé des modèles d’allocation d’actifs et des simulations Monte‑Carlo, diminuant les temps de calcul et améliorant la précision des prévisions</li>
-              <li>Développé un agent d’IA ayant renforcé l’efficacité de la gestion du temps au sein de plusieurs équipes</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="experience-item">
-          <div class="experience-header">
-            <div class="experience-title">
-              <h3>Mathématicien appliqué à l’IA</h3>
-              <div class="experience-company">Outlier | Paris, France</div>
-            </div>
-            <div class="experience-period">Février 2025 – Juin 2025</div>
-          </div>
-          <div class="experience-description">
-            <ul>
-              <li>Collaboration avec des équipes de recherche pour améliorer la performance de modèles d’IA</li>
-              <li>Contribution au développement et à l’évaluation de modèles mathématiques avancés pour des cas d’usage IA</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container">
-      <h2>Compétences et expertise</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Langages de programmation</h3>
-          <ul>
-            <li>Python</li>
-            <li>R</li>
-            <li>SQL</li>
-            <li>C++</li>
-            <li>Spark</li>
-            <li>MongoDB</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Outils data & analytics</h3>
-          <ul>
-            <li>Excel</li>
-            <li>MATLAB</li>
-            <li>n8n</li>
-            <li>Azure</li>
-            <li>KNIME</li>
-            <li>Celonis</li>
-            <li>SAS Studio</li>
-            <li>Tableau</li>
-            <li>Power BI</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Connaissances spécialisées</h3>
-          <ul>
-            <li>Machine learning & IA</li>
-            <li>Business intelligence</li>
-            <li>Datavisualisation</li>
-            <li>Analyse statistique</li>
-            <li>Algorithmes d’optimisation</li>
-            <li>Logique floue & métaheuristiques</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Langues</h3>
-          <ul>
-            <li>Italien (natif)</li>
-            <li>Russe (natif)</li>
-            <li>Anglais (courant)</li>
-            <li>Français (intermédiaire)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container">
-      <h2>Projets phares</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Hackathon Eleven Strategy - Prévision des temps d'attente</h3>
-          <p>Pipeline de prévision pour les opérations de parcs d'attractions qui prédit l'affluence de la semaine suivante et les temps d'attente des attractions, alimentant des tableaux de bord pour le personnel, la gestion des files d'attente et l'expérience client. Pipeline de préparation des données à partir de l'affluence historique, des temps d'attente et de la météo, avec prévision d'affluence et modèles de temps d'attente par attraction. Trois modules de tableau de bord frontend livrés pour la prise de décision opérationnelle.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">XGBoost</span>
-            <span class="tech-tag">scikit-learn</span>
-            <span class="tech-tag">Gradient Boosting</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Jupyter</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Artur-Gar/Hackathon-Eleven-Strategy" target="_blank">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>LangGraph Pharma Marketing</h3>
-          <p>Solution GenAI pour générer des phrases marketing conformes aux réglementations pharmaceutiques, utilisant un système multi‑agents LangGraph. Intègre la récupération RAG, la validation automatique de conformité et la génération de contenu ciblé par persona.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">LangGraph</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">OpenAI GPT-4</span>
-            <span class="tech-tag">ChromaDB</span>
-            <span class="tech-tag">RAG</span>
-            <span class="tech-tag">Streamlit</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>RiskGraph</h3>
-          <p>Application d'évaluation et d'analyse des risques basée sur LangGraph, effectuant des analyses intelligentes avec stockage vectoriel. Génération de PDF professionnels avec LaTeX, intégration FAISS pour la récupération de documents et workflows asynchrones pour des performances optimisées.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">LangGraph</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">OpenAI</span>
-            <span class="tech-tag">FAISS</span>
-            <span class="tech-tag">Streamlit</span>
-            <span class="tech-tag">Docker</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Mémoire de licence : optimisation de portefeuilles long‑short</h3>
-          <p>Développement d’une approche innovante pour optimiser des portefeuilles long‑short à l’aide de logique floue et de techniques métaheuristiques, alliant méthodes mathématiques avancées et cas d’usage financiers.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Logique floue</span>
-            <span class="tech-tag">Optimisation</span>
-            <span class="tech-tag">Modélisation financière</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Analyse du churn clients dans les télécoms (US)</h3>
-          <p>Construction de modèles prédictifs sous R pour anticiper le comportement client et guider les stratégies de rétention. Utilisation de techniques de classification, dont la régression LASSO, pour identifier les facteurs clés du churn.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">R</span>
-            <span class="tech-tag">LASSO</span>
-            <span class="tech-tag">Modèles de classification</span>
-            <span class="tech-tag">Analyse prédictive</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Système de recommandation par réseaux de neurones</h3>
-          <p>Conception et mise en œuvre de trois systèmes de recommandation pour une entreprise de prêt‑à‑porter, améliorant la personnalisation et l’engagement grâce à des techniques avancées de machine learning.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">TensorFlow</span>
-            <span class="tech-tag">Réseaux de neurones</span>
-            <span class="tech-tag">Systèmes de recommandation</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Base de données SQL sur les accidents aériens</h3>
-          <p>Création d’une base SQL dédiée à l’analyse des accidents aériens. Écriture de requêtes avancées pour dégager des tendances et insights à partir de données historiques.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">SQL</span>
-            <span class="tech-tag">Conception de base de données</span>
-            <span class="tech-tag">Analyse de données</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Application de micro‑apprentissage financier</h3>
-          <p>Co‑développement d’une application d’éducation financière au format court (type TikTok) pour investisseurs, avec monétisation via publicité et partenariats data.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Développement mobile</span>
-            <span class="tech-tag">UI/UX</span>
-            <span class="tech-tag">FinTech</span>
-            <span class="tech-tag">Modèle économique</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">Voir les détails →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <h2>Contactez‑moi</h2>
-      <div class="contact-content">
-        <p>Je recherche un stage de fin d’études et suis disponible à partir de juillet 2026. Une opportunité, une question, ou l’envie d’échanger ? Écrivez‑moi !</p>
-        <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
-        <div class="social-links">
-          <a href="https://github.com/alessandroiva" target="_blank">GitHub</a>
-          <a href="https://linkedin.com/in/alessandroiva" target="_blank">LinkedIn</a>
-          <a href="tel:+393486136439">Téléphone</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Alessandro Ivashkevich. Réalisé avec passion pour les données et l’innovation.</p>
-    </div>
-  </footer>
-</div>
-
-<!-- ITALIAN VERSION -->
-<div id="lang-it" class="lang-content">
-  <section class="hero">
-    <div class="container">
-      <h1>Alessandro Ivashkevich</h1>
-      <p class="tagline">Data scientist e appassionato di business analytics</p>
-      <p>Studente di laurea magistrale in Data Science & Business Analytics presso ESSEC e CentraleSupélec. Mi piace trasformare dati grezzi in insight utili e creare soluzioni all’incrocio tra tecnologia e business.</p>
-      <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">Vedi progetti</a>
-        <a href="#contact" class="btn">Contattami</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container">
-      <h2>Chi sono</h2>
-      <div class="about-content">
-        <div class="about-image">
-          <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
-        </div>
-        <div class="about-text">
-          <p>Ciao! Sono Alessandro, studente di laurea magistrale in Data Science & Business Analytics all’ESSEC e CentraleSupélec (Parigi). Italiano con origini russe, sono da sempre affascinato dal punto di incontro tra tecnologia, dati e strategia.</p>
-          <p>Mi sono laureato in Management e Informatica alla Luiss Guido Carli (voto: 108/110) e sono stato selezionato per lo Stanford International Honors Program, dove ho studiato ottimizzazione convessa, high‑performance computing e imprenditorialità tecnologica.</p>
-          <p>Mi guidano la curiosità e la voglia di capire il perché delle cose. Affronto i problemi come rompicapi, trasformando dati frammentati in decisioni chiare e azionabili. Cerco uno stage di fine percorso, disponibile da luglio 2026.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="container">
-      <h2>Esperienza</h2>
-      <div class="experience-grid">
-        <div class="experience-item">
-          <div class="experience-header">
-            <div class="experience-title">
-              <h3>Tirocinante Data Analyst</h3>
-              <div class="experience-company">Bordier | Ginevra, Svizzera</div>
-            </div>
-            <div class="experience-period">luglio 2025 – agosto 2025</div>
-          </div>
-          <div class="experience-description">
-            <ul>
-              <li>Progettazione e miglioramento di modelli Excel per l’analisi mensile dei fondi, con −80% di lavoro manuale</li>
-              <li>Ottimizzazione di modelli di allocazione degli asset e simulazioni di Monte Carlo, riducendo i tempi di calcolo e aumentando l’accuratezza</li>
-              <li>Sviluppo di un agente di IA che ha migliorato l’efficienza nella gestione del tempo di più team</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="experience-item">
-          <div class="experience-header">
-            <div class="experience-title">
-              <h3>Matematico applicato all’IA</h3>
-              <div class="experience-company">Outlier | Parigi, Francia</div>
-            </div>
-            <div class="experience-period">febbraio 2025 – giugno 2025</div>
-          </div>
-          <div class="experience-description">
-            <ul>
-              <li>Collaborazione con team di ricerca per migliorare le prestazioni dei modelli di IA</li>
-              <li>Contributo allo sviluppo e alla valutazione di modelli matematici avanzati per applicazioni di IA</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container">
-      <h2>Competenze</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Linguaggi di programmazione</h3>
-          <ul>
-            <li>Python</li>
-            <li>R</li>
-            <li>SQL</li>
-            <li>C++</li>
-            <li>Spark</li>
-            <li>MongoDB</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Strumenti data & analytics</h3>
-          <ul>
-            <li>Excel</li>
-            <li>MATLAB</li>
-            <li>n8n</li>
-            <li>Azure</li>
-            <li>KNIME</li>
-            <li>Celonis</li>
-            <li>SAS Studio</li>
-            <li>Tableau</li>
-            <li>Power BI</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Aree di specializzazione</h3>
-          <ul>
-            <li>Machine learning & IA</li>
-            <li>Business intelligence</li>
-            <li>Data visualization</li>
-            <li>Analisi statistica</li>
-            <li>Algoritmi di ottimizzazione</li>
-            <li>Logica fuzzy & metaeuristiche</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Lingue</h3>
-          <ul>
-            <li>Italiano (madrelingua)</li>
-            <li>Russo (madrelingua)</li>
-            <li>Inglese (fluente)</li>
-            <li>Francese (intermedio)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container">
-      <h2>Progetti in evidenza</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Hackathon Eleven Strategy - Previsione tempi d'attesa</h3>
-          <p>Pipeline di previsione per le operazioni dei parchi divertimento che predice l'affluenza della settimana successiva e i tempi d'attesa delle attrazioni, alimentando dashboard aziendali per il personale, la gestione delle code e l'esperienza degli ospiti. Pipeline di preparazione dati da affluenza storica, tempi d'attesa e dati meteo, con previsione affluenza e modelli di tempi d'attesa per attrazione. Tre moduli di dashboard frontend consegnati per il supporto alle decisioni operative.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">XGBoost</span>
-            <span class="tech-tag">scikit-learn</span>
-            <span class="tech-tag">Gradient Boosting</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Jupyter</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Artur-Gar/Hackathon-Eleven-Strategy" target="_blank">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>LangGraph Pharma Marketing</h3>
-          <p>Soluzione GenAI per generare frasi di marketing conformi alle normative farmaceutiche, utilizzando un sistema multi‑agente LangGraph. Include recupero RAG, validazione automatica della conformità e generazione di contenuti mirati per diverse personas demografiche.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">LangGraph</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">OpenAI GPT-4</span>
-            <span class="tech-tag">ChromaDB</span>
-            <span class="tech-tag">RAG</span>
-            <span class="tech-tag">Streamlit</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>RiskGraph</h3>
-          <p>Applicazione di valutazione e analisi del rischio basata su LangGraph che esegue analisi intelligenti con capacità di archiviazione vettoriale. Include generazione professionale di PDF con LaTeX, integrazione FAISS per il recupero di documenti e workflow asincroni per prestazioni ottimizzate.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">LangGraph</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">OpenAI</span>
-            <span class="tech-tag">FAISS</span>
-            <span class="tech-tag">Streamlit</span>
-            <span class="tech-tag">Docker</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Tesi di laurea: ottimizzazione di portafogli long‑short</h3>
-          <p>Approccio innovativo all’ottimizzazione di portafogli long‑short con logica fuzzy e metaeuristiche, combinando metodi matematici avanzati e casi d’uso finanziari.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Logica fuzzy</span>
-            <span class="tech-tag">Ottimizzazione</span>
-            <span class="tech-tag">Modellazione finanziaria</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Analisi del churn nel settore telecom USA</h3>
-          <p>Modelli predittivi in R per anticipare il comportamento dei clienti e guidare la retention. Uso di tecniche di classificazione, tra cui regressione LASSO, per individuare i driver principali dell’abbandono.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">R</span>
-            <span class="tech-tag">LASSO</span>
-            <span class="tech-tag">Modelli di classificazione</span>
-            <span class="tech-tag">Analisi predittiva</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Sistema di raccomandazione con reti neurali</h3>
-          <p>Progettazione e implementazione di tre sistemi di raccomandazione per un’azienda di abbigliamento, migliorando personalizzazione e engagement tramite tecniche avanzate di ML.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">TensorFlow</span>
-            <span class="tech-tag">Reti neurali</span>
-            <span class="tech-tag">Sistemi di raccomandazione</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Database SQL sugli incidenti aerei</h3>
-          <p>Creazione di un database SQL per l’analisi degli incidenti aerei. Query avanzate per ricavare tendenze e insight dai dati storici.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">SQL</span>
-            <span class="tech-tag">Design database</span>
-            <span class="tech-tag">Analisi dati</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>App di micro‑apprendimento finanziario</h3>
-          <p>Co‑sviluppo di un’app in stile TikTok per l’educazione finanziaria, con monetizzazione tramite advertising e partnership sui dati.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Sviluppo mobile</span>
-            <span class="tech-tag">UI/UX</span>
-            <span class="tech-tag">FinTech</span>
-            <span class="tech-tag">Modello di business</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">Vedi dettagli →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <h2>Contatti</h2>
-      <div class="contact-content">
-        <p>Sto cercando uno stage di fine percorso e sono disponibile da luglio 2026. Hai un’opportunità o una domanda? Scrivimi!</p>
-        <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
-        <div class="social-links">
-          <a href="https://github.com/alessandroiva" target="_blank">GitHub</a>
-          <a href="https://linkedin.com/in/alessandroiva" target="_blank">LinkedIn</a>
-          <a href="tel:+393486136439">Telefono</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Alessandro Ivashkevich. Realizzato con passione per i dati e l’innovazione.</p>
-    </div>
-  </footer>
-</div>
-
-<!-- RUSSIAN VERSION -->
-<div id="lang-ru" class="lang-content">
-  <section class="hero">
-    <div class="container">
-      <h1>Алессандро Ивашкевич</h1>
-      <p class="tagline">Дата‑сайентист и специалист по бизнес‑аналитике</p>
-      <p>Магистрант программы по науке о данных и бизнес‑аналитике в ESSEC и CentraleSupélec. Превращаю сырые данные в практичные инсайты и создаю решения на стыке технологий и бизнеса.</p>
-      <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">Смотреть проекты</a>
-        <a href="#contact" class="btn">Связаться</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container">
-      <h2>Обо мне</h2>
-      <div class="about-content">
-        <div class="about-image">
-          <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
-        </div>
-        <div class="about-text">
-          <p>Привет! Я Алессандро, учусь на магистерской программе по науке о данных и бизнес‑аналитике в ESSEC и CentraleSupélec (Париж). Итальянец с русскими корнями; меня вдохновляет всё, что связано с данными, технологией и стратегией.</p>
-          <p>Бакалавр менеджмента и информатики (Luiss Guido Carli, средний балл 108/110). Прошёл отбор в Stanford International Honors Program, где изучал выпуклую оптимизацию, высокопроизводительные вычисления и технологическое предпринимательство.</p>
-          <p>Меня ведёт любопытство и стремление понять, почему всё работает именно так. Подхожу к задачам как к головоломкам, превращая разрозненные данные в ясные и применимые выводы. Ищу стажировку на финальный год обучения, готов приступить в июле 2026 года.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="container">
-      <h2>Опыт работы</h2>
-      <div class="experience-grid">
-        <div class="experience-item">
-          <div class="experience-header">
-            <div class="experience-title">
-              <h3>Стажёр Data Analyst</h3>
-              <div class="experience-company">Bordier | Женева, Швейцария</div>
-            </div>
-            <div class="experience-period">июль 2025 – август 2025</div>
-          </div>
-          <div class="experience-description">
-            <ul>
-              <li>Разработал и улучшил Excel‑шаблоны для ежемесячного анализа фондов, снизив долю ручной работы на 80%</li>
-              <li>Оптимизировал модели распределения активов и симуляции Монте‑Карло, сократив время расчётов и повысив точность прогнозов</li>
-              <li>Создал ИИ‑агента, повысившего эффективность тайм‑менеджмента в нескольких командах</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="experience-item">
-          <div class="experience-header">
-            <div class="experience-title">
-              <h3>Прикладной математик в области ИИ</h3>
-              <div class="experience-company">Outlier | Париж, Франция</div>
-            </div>
-            <div class="experience-period">февраль 2025 – июнь 2025</div>
-          </div>
-          <div class="experience-description">
-            <ul>
-              <li>Работал с исследовательскими командами над повышением качества и устойчивости моделей ИИ</li>
-              <li>Участвовал в разработке и оценке продвинутых математических моделей для прикладных задач ИИ</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container">
-      <h2>Навыки и экспертиза</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>Языки программирования</h3>
-          <ul>
-            <li>Python</li>
-            <li>R</li>
-            <li>SQL</li>
-            <li>C++</li>
-            <li>Spark</li>
-            <li>MongoDB</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Инструменты аналитики</h3>
-          <ul>
-            <li>Excel</li>
-            <li>MATLAB</li>
-            <li>n8n</li>
-            <li>Azure</li>
-            <li>KNIME</li>
-            <li>Celonis</li>
-            <li>SAS Studio</li>
-            <li>Tableau</li>
-            <li>Power BI</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Специализация</h3>
-          <ul>
-            <li>Машинное обучение и ИИ</li>
-            <li>Бизнес‑аналитика</li>
-            <li>Визуализация данных</li>
-            <li>Статистический анализ</li>
-            <li>Алгоритмы оптимизации</li>
-            <li>Нечёткая логика и метаэвристики</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Языки</h3>
-          <ul>
-            <li>Итальянский (родной)</li>
-            <li>Русский (родной)</li>
-            <li>Английский (свободно)</li>
-            <li>Французский (средний)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container">
-      <h2>Ключевые проекты</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Hackathon Eleven Strategy - Прогнозирование времени ожидания</h3>
-          <p>Pipeline прогнозирования для парков развлечений, предсказывающий посещаемость на следующую неделю и время ожидания аттракционов, питающий бизнес‑дашборды для планирования персонала, управления очередями и улучшения опыта гостей. Построен pipeline подготовки данных из исторической посещаемости, времени ожидания и погодных данных, с прогнозированием посещаемости и моделями времени ожидания по аттракционам. Реализованы три модуля фронтенд‑дашбордов для оперативного принятия решений.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">XGBoost</span>
-            <span class="tech-tag">scikit-learn</span>
-            <span class="tech-tag">Gradient Boosting</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">Jupyter</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Artur-Gar/Hackathon-Eleven-Strategy" target="_blank">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>LangGraph Pharma Marketing</h3>
-          <p>GenAI‑решение для генерации маркетинговых фраз, соответствующих фармацевтическим нормам, с использованием мультиагентной системы LangGraph. Включает RAG‑поиск, автоматическую проверку соответствия регуляторным требованиям и генерацию контента для различных целевых аудиторий.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">LangGraph</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">OpenAI GPT-4</span>
-            <span class="tech-tag">ChromaDB</span>
-            <span class="tech-tag">RAG</span>
-            <span class="tech-tag">Streamlit</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>RiskGraph</h3>
-          <p>Приложение для оценки и анализа рисков на основе LangGraph, выполняющее интеллектуальный анализ с использованием векторного хранилища. Профессиональная генерация PDF с LaTeX, интеграция FAISS для поиска документов и асинхронные рабочие процессы для оптимизированной производительности.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">LangGraph</span>
-            <span class="tech-tag">LangChain</span>
-            <span class="tech-tag">OpenAI</span>
-            <span class="tech-tag">FAISS</span>
-            <span class="tech-tag">Streamlit</span>
-            <span class="tech-tag">Docker</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Диплом: оптимизация long‑short портфелей</h3>
-          <p>Инновационный подход к оптимизации long‑short портфелей с применением нечёткой логики и метаэвристик, сочетающий строгие методы и практику финансового моделирования.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Нечёткая логика</span>
-            <span class="tech-tag">Оптимизация</span>
-            <span class="tech-tag">Финансовое моделирование</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Прогноз оттока клиентов (телеком США)</h3>
-          <p>Модели в R для предсказания поведения клиентов и стратегий удержания. Применение методов классификации, включая LASSO‑регрессию, для выявления ключевых факторов оттока.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">R</span>
-            <span class="tech-tag">LASSO</span>
-            <span class="tech-tag">Классификация</span>
-            <span class="tech-tag">Предиктивная аналитика</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Рекомендательная система на нейросетях</h3>
-          <p>Проектирование и внедрение трёх рекомендательных систем для fashion‑компании, повысивших персонализацию и вовлечённость пользователей за счёт продвинутых методов ML.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">TensorFlow</span>
-            <span class="tech-tag">Нейронные сети</span>
-            <span class="tech-tag">Рекомендательные системы</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>SQL‑база авиакатастроф</h3>
-          <p>Создание базы данных для анализа авиационных происшествий. Сложные запросы для извлечения закономерностей и ценных инсайтов из исторических данных.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">SQL</span>
-            <span class="tech-tag">Проектирование БД</span>
-            <span class="tech-tag">Анализ данных</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Приложение для финансового микрообучения</h3>
-          <p>Совместная разработка приложения в формате коротких видео (по типу TikTok) для инвесторов; монетизация через рекламу и партнёрства по данным.</p>
-          <div class="tech-stack">
-            <span class="tech-tag">Мобильная разработка</span>
-            <span class="tech-tag">UI/UX</span>
-            <span class="tech-tag">FinTech</span>
-            <span class="tech-tag">Бизнес‑модель</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/alessandroiva">Подробности →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <h2>Связаться со мной</h2>
-      <div class="contact-content">
-        <p>Ищу стажировку на последний год обучения. Есть предложение или вопрос — пишите! Готов приступить в июле 2026 года.</p>
-        <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
-        <div class="social-links">
-          <a href="https://github.com/alessandroiva" target="_blank">GitHub</a>
-          <a href="https://linkedin.com/in/alessandroiva" target="_blank">LinkedIn</a>
-          <a href="tel:+393486136439">Телефон</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Алессандро Ивашкевич. Создано с любовью к данным и инновациям.</p>
-    </div>
-  </footer>
-</div>
+<noscript>
+  <div style="padding:120px 24px;max-width:700px;margin:0 auto;text-align:center">
+    <h1>Alessandro Ivashkevich</h1>
+    <p>Data scientist &amp; AI engineer in the making — MSc Data Science &amp; Business Analytics at ESSEC &amp; CentraleSupélec, Paris.</p>
+    <p>Enable JavaScript to see the full portfolio, or reach me at <a href="mailto:alessandroivashkevich@gmail.com" style="color:#818cf8">alessandroivashkevich@gmail.com</a>.</p>
+  </div>
+</noscript>
 
 <script>
-  function changeLanguage(lang) {
-    document.querySelectorAll('.lang-content').forEach(el => {
-      el.classList.remove('active');
-    });
-    const selected = document.getElementById('lang-' + lang);
-    if (selected) selected.classList.add('active');
+'use strict';
 
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.classList.remove('active');
-    });
-    const activeBtn = document.querySelector('.lang-btn[data-lang="' + lang + '"]');
-    if (activeBtn) activeBtn.classList.add('active');
+/* =====================================================
+   CONTENT — one source of truth, four languages
+   ===================================================== */
+const NAV = [
+  { id: 'about',      label: { en: 'About',       fr: 'À propos',     it: 'Chi sono',    ru: 'Обо мне' } },
+  { id: 'experience', label: { en: 'Experience',  fr: 'Expérience',   it: 'Esperienza',  ru: 'Опыт' } },
+  { id: 'education',  label: { en: 'Education',   fr: 'Formation',    it: 'Formazione',  ru: 'Образование' } },
+  { id: 'projects',   label: { en: 'Projects',    fr: 'Projets',      it: 'Progetti',    ru: 'Проекты' } },
+  { id: 'skills',     label: { en: 'Skills',      fr: 'Compétences',  it: 'Competenze',  ru: 'Навыки' } },
+  { id: 'honors',     label: { en: 'Honors',      fr: 'Distinctions', it: 'Attività',    ru: 'Достижения' } },
+  { id: 'contact',    label: { en: 'Contact',     fr: 'Contact',      it: 'Contatti',    ru: 'Контакты' } }
+];
 
-    document.documentElement.lang = lang;
+const HERO = {
+  eyebrow: {
+    en: 'Paris · Open to final-year internships from September 2026',
+    fr: 'Paris · Ouvert aux stages de fin d’études dès septembre 2026',
+    it: 'Parigi · Disponibile per stage di fine percorso da settembre 2026',
+    ru: 'Париж · Открыт для стажировок с сентября 2026'
+  },
+  iam: { en: 'I build', fr: 'Je construis :', it: 'Costruisco', ru: 'Я создаю' },
+  roles: {
+    en: ['AI agents that save real money.', 'forecasting systems that win hackathons.', 'optimization tools, merged upstream.', 'ML research beyond accuracy.'],
+    fr: ['des agents IA qui font gagner de l’argent.', 'des systèmes de prévision primés.', 'des outils d’optimisation open source.', 'de la recherche ML au-delà de la précision.'],
+    it: ['agenti AI che fanno risparmiare davvero.', 'sistemi di previsione che vincono hackathon.', 'strumenti di ottimizzazione open source.', 'ricerca ML oltre l’accuratezza.'],
+    ru: ['ИИ-агентов, которые экономят деньги.', 'прогнозные системы, побеждающие в хакатонах.', 'инструменты оптимизации в open source.', 'ML-исследования не только про точность.']
+  },
+  tagline: {
+    en: 'MSc student in Data Science & Business Analytics at ESSEC & CentraleSupélec — ranked 3rd MSc worldwide (QS Business Analytics ’25). I turn raw data into decisions, and repetitive workflows into AI agents.',
+    fr: 'Étudiant en MSc Data Science & Business Analytics à l’ESSEC & CentraleSupélec — 3e MSc mondial (QS Business Analytics ’25). Je transforme les données brutes en décisions, et les tâches répétitives en agents IA.',
+    it: 'Studente del MSc in Data Science & Business Analytics a ESSEC & CentraleSupélec — 3° MSc al mondo (QS Business Analytics ’25). Trasformo dati grezzi in decisioni e flussi ripetitivi in agenti AI.',
+    ru: 'Магистрант программы Data Science & Business Analytics в ESSEC & CentraleSupélec — 3-е место в мире (QS Business Analytics ’25). Превращаю сырые данные в решения, а рутинные процессы — в ИИ-агентов.'
+  },
+  cta1: { en: 'Explore my work', fr: 'Voir mes projets', it: 'Vedi i progetti', ru: 'Смотреть проекты' },
+  cta2: { en: 'Get in touch', fr: 'Me contacter', it: 'Contattami', ru: 'Связаться' },
+  scroll: { en: 'scroll', fr: 'défiler', it: 'scorri', ru: 'вниз' }
+};
+
+const STATS = [
+  { value: '1st', num: null,
+    label: { en: 'Kaggle ML challenge & Eleven Strategy hackathon',
+             fr: 'Challenge ML Kaggle & hackathon Eleven Strategy',
+             it: 'Challenge ML Kaggle & hackathon Eleven Strategy',
+             ru: 'Kaggle ML challenge и хакатон Eleven Strategy' } },
+  { value: '470×', num: 470, suffix: '×',
+    label: { en: 'faster inference than the industry baseline — SLB research',
+             fr: 'inférence plus rapide que la référence industrielle — recherche SLB',
+             it: 'inferenza più veloce del baseline industriale — ricerca SLB',
+             ru: 'быстрее отраслевого базлайна — исследование в SLB' } },
+  { value: '19×', num: 19, suffix: '×',
+    label: { en: 'API speed-up merged into an open-source optimizer',
+             fr: 'accélération d’API intégrée à un optimiseur open source',
+             it: 'accelerazione API integrata in un ottimizzatore open source',
+             ru: 'ускорение API, принятое в open-source оптимизатор' } },
+  { value: '+100K', num: 100, prefix: '+', suffix: 'K',
+    label: { en: 'CHF of annual productivity reclaimed by my AI agent at Bordier',
+             fr: 'CHF de productivité annuelle récupérée par mon agent IA chez Bordier',
+             it: 'CHF di produttività annua recuperata dal mio agente AI da Bordier',
+             ru: 'CHF годовой продуктивности вернул мой ИИ-агент в Bordier' } }
+];
+
+const SECTIONS = {
+  about:      { no: '01', title: { en: 'About me', fr: 'À propos', it: 'Chi sono', ru: 'Обо мне' } },
+  experience: { no: '02', title: { en: 'Experience', fr: 'Expérience', it: 'Esperienza', ru: 'Опыт работы' } },
+  education:  { no: '03', title: { en: 'Education', fr: 'Formation', it: 'Formazione', ru: 'Образование' } },
+  projects:   { no: '04', title: { en: 'Projects', fr: 'Projets', it: 'Progetti', ru: 'Проекты' } },
+  skills:     { no: '05', title: { en: 'Skills & Tools', fr: 'Compétences & outils', it: 'Competenze & strumenti', ru: 'Навыки и инструменты' } },
+  honors:     { no: '06', title: { en: 'Honors & Activities', fr: 'Distinctions & activités', it: 'Riconoscimenti & attività', ru: 'Достижения и активности' } },
+  contact:    { no: '07', title: { en: 'Let’s build something', fr: 'Construisons ensemble', it: 'Costruiamo qualcosa', ru: 'Давайте создадим что-то' } }
+};
+
+const ABOUT = {
+  p1: {
+    en: 'I’ve always loved puzzles. Solving one turns something fragmented and indefinite into a clear, unified picture — which is exactly what draws me to data: <strong>turning raw, messy information into decisions people can act on</strong>.',
+    fr: 'J’ai toujours aimé les puzzles. En résoudre un transforme quelque chose de fragmenté en une image claire et unifiée — c’est exactement ce qui m’attire dans la data : <strong>transformer des informations brutes en décisions actionnables</strong>.',
+    it: 'Ho sempre amato i puzzle. Risolverne uno trasforma qualcosa di frammentato e indefinito in un’immagine chiara e unita — ed è esattamente ciò che mi attrae dei dati: <strong>trasformare informazioni grezze in decisioni concrete</strong>.',
+    ru: 'Я всегда любил собирать пазлы. Решение превращает нечто разрозненное в ясную, цельную картину — именно это привлекает меня в данных: <strong>превращать сырую информацию в решения, на которые можно опереться</strong>.'
+  },
+  p2: {
+    en: 'My path: a BSc in Management & Computer Science at LUISS in Rome (108/110), a semester in <strong>Stanford’s International Honors Program</strong> — where I refused to drop graduate-level Convex Optimization and finished it — and now an MSc at <strong>ESSEC & CentraleSupélec</strong> in Paris. Born near Piacenza, Italy, with Italian and Russian roots, I grew up switching between cultures; it taught me there is never just one way to approach a problem.',
+    fr: 'Mon parcours : une licence en Management & Informatique à la LUISS de Rome (108/110), un semestre dans l’<strong>International Honors Program de Stanford</strong> — où j’ai refusé d’abandonner le cours d’optimisation convexe de niveau master et l’ai terminé — et aujourd’hui un MSc à l’<strong>ESSEC & CentraleSupélec</strong> à Paris. Né près de Plaisance en Italie, de racines italiennes et russes, j’ai grandi entre deux cultures ; cela m’a appris qu’il n’y a jamais une seule façon d’aborder un problème.',
+    it: 'Il mio percorso: laurea in Management e Informatica alla LUISS di Roma (108/110), un semestre nello <strong>Stanford International Honors Program</strong> — dove mi sono rifiutato di abbandonare Convex Optimization, un corso di livello graduate, e l’ho portato a termine — e ora il MSc a <strong>ESSEC & CentraleSupélec</strong> a Parigi. Nato vicino a Piacenza, con radici italiane e russe, sono cresciuto tra due culture: mi ha insegnato che non esiste mai un solo modo di affrontare un problema.',
+    ru: 'Мой путь: бакалавриат по менеджменту и информатике в LUISS в Риме (108/110), семестр в <strong>Stanford International Honors Program</strong> — где я отказался бросить магистерский курс выпуклой оптимизации и довёл его до конца — и теперь магистратура в <strong>ESSEC & CentraleSupélec</strong> в Париже. Я родился недалеко от Пьяченцы в Италии, с итальянскими и русскими корнями, и вырос между двумя культурами — это научило меня тому, что у любой задачи всегда больше одного решения.'
+  },
+  p3: {
+    en: 'I fell in love with <strong>AI agents</strong> during my internship at Bordier in Geneva — and haven’t stopped building since: hackathons, open-source contributions, and research at <strong>SLB</strong> on reliable, energy-efficient AI. I’m now looking for a <strong>final-year internship, available from September 2026</strong>.',
+    fr: 'Je suis tombé amoureux des <strong>agents IA</strong> pendant mon stage chez Bordier à Genève — et je n’ai pas arrêté de construire depuis : hackathons, contributions open source et recherche chez <strong>SLB</strong> sur une IA fiable et économe en énergie. Je recherche aujourd’hui un <strong>stage de fin d’études, disponible dès septembre 2026</strong>.',
+    it: 'Mi sono innamorato degli <strong>agenti AI</strong> durante il mio stage da Bordier a Ginevra — e da allora non ho smesso di costruire: hackathon, contributi open source e ricerca in <strong>SLB</strong> su un’AI affidabile ed efficiente dal punto di vista energetico. Ora cerco uno <strong>stage di fine percorso, disponibile da settembre 2026</strong>.',
+    ru: 'Я влюбился в <strong>ИИ-агентов</strong> во время стажировки в Bordier в Женеве — и с тех пор не перестаю строить: хакатоны, вклад в open source и исследования в <strong>SLB</strong> о надёжном и энергоэффективном ИИ. Сейчас ищу <strong>стажировку на последний год обучения, доступен с сентября 2026</strong>.'
+  },
+  values: [
+    { en: 'Curiosity', fr: 'Curiosité', it: 'Curiosità', ru: 'Любопытство' },
+    { en: 'Determination', fr: 'Détermination', it: 'Determinazione', ru: 'Упорство' },
+    { en: 'Teamwork', fr: 'Esprit d’équipe', it: 'Lavoro di squadra', ru: 'Командная работа' },
+    { en: 'International mindset', fr: 'Ouverture internationale', it: 'Mentalità internazionale', ru: 'Международный взгляд' },
+    { en: 'Hands-on learning', fr: 'Apprentissage pratique', it: 'Imparare facendo', ru: 'Обучение на практике' }
+  ]
+};
+
+const EXPERIENCE = [
+  {
+    company: 'SLB',
+    companyNote: { en: 'Paris, France', fr: 'Paris, France', it: 'Parigi, Francia', ru: 'Париж, Франция' },
+    role: { en: 'Research Intern — AI & Energy Efficiency', fr: 'Stagiaire de recherche — IA & efficacité énergétique', it: 'Research Intern — AI & efficienza energetica', ru: 'Стажёр-исследователь — ИИ и энергоэффективность' },
+    period: { en: 'Jan – Jun 2026', fr: 'janv. – juin 2026', it: 'gen – giu 2026', ru: 'янв. – июнь 2026' },
+    bullets: [
+      { en: 'Co-authored “Beyond Accuracy”, a cost-benefit benchmark of three deep learning families (sliding-window classifiers, GNN segmentation, PatchTST transformers) for formation-top detection in well logs — scoring every model on accuracy, latency, energy, and carbon footprint.',
+        fr: 'Co-auteur de « Beyond Accuracy », un benchmark coût-bénéfice de trois familles de deep learning (classifieurs à fenêtre glissante, segmentation GNN, transformers PatchTST) pour la détection de toits de formation dans les diagraphies — chaque modèle évalué sur précision, latence, énergie et empreinte carbone.',
+        it: 'Co-autore di “Beyond Accuracy”, un benchmark costi-benefici di tre famiglie di deep learning (classificatori sliding-window, segmentazione GNN, transformer PatchTST) per il rilevamento dei top di formazione nei log di pozzo — ogni modello valutato su accuratezza, latenza, energia e impronta di carbonio.',
+        ru: 'Соавтор “Beyond Accuracy” — сравнительного анализа затрат и выгод трёх семейств глубокого обучения (скользящие классификаторы, GNN-сегментация, трансформеры PatchTST) для детекции границ пластов в каротажных данных: каждая модель оценивалась по точности, задержке, энергии и углеродному следу.' },
+      { en: 'Owned the energy & carbon measurement workstream: instrumented every training and evaluation run with CodeCarbon and CarbonTracker across three datasets, making energy a first-class model-selection metric alongside accuracy.',
+        fr: 'Responsable du volet mesure énergie & carbone : instrumentation de chaque entraînement et évaluation avec CodeCarbon et CarbonTracker sur trois jeux de données, faisant de l’énergie un critère de sélection de modèle à part entière.',
+        it: 'Responsabile del filone di misurazione energia e carbonio: strumentato ogni training e valutazione con CodeCarbon e CarbonTracker su tre dataset, rendendo l’energia una metrica di selezione dei modelli al pari dell’accuratezza.',
+        ru: 'Отвечал за направление измерения энергии и углерода: инструментировал каждый запуск обучения и оценки с CodeCarbon и CarbonTracker на трёх датасетах, сделав энергию полноценной метрикой выбора модели наравне с точностью.' },
+      { en: 'Built Stage-2 anomaly-refinement pipelines (Isolation Forest, variational graph autoencoder) on GraphSAGE embeddings, and ran classification sweeps on the North Sea dataset — 1,765 wells, 5 log modalities.',
+        fr: 'Construction de pipelines de raffinement d’anomalies (Isolation Forest, autoencodeur graphique variationnel) sur des embeddings GraphSAGE, et sweeps de classification sur le jeu de données de la mer du Nord — 1 765 puits, 5 modalités.',
+        it: 'Costruite pipeline di raffinamento anomalie di Stage 2 (Isolation Forest, autoencoder grafico variazionale) su embedding GraphSAGE, ed eseguiti sweep di classificazione sul dataset del Mare del Nord — 1.765 pozzi, 5 modalità di log.',
+        ru: 'Построил пайплайны уточнения аномалий второй ступени (Isolation Forest, вариационный графовый автоэнкодер) на эмбеддингах GraphSAGE и провёл перебор классификаторов на данных Северного моря — 1 765 скважин, 5 видов каротажа.' },
+      { en: 'Result: every deep learning approach beat the Dynamic Time Warping industry baseline in both recall and speed — up to 470× faster inference — synthesised into a decision framework and final research report for SLB.',
+        fr: 'Résultat : chaque approche deep learning a battu la référence industrielle Dynamic Time Warping en rappel comme en vitesse — inférence jusqu’à 470× plus rapide — synthétisé en un cadre de décision et un rapport final pour SLB.',
+        it: 'Risultato: ogni approccio di deep learning ha battuto il baseline industriale Dynamic Time Warping sia in recall sia in velocità — inferenza fino a 470× più rapida — sintetizzato in un framework decisionale e nel report finale per SLB.',
+        ru: 'Результат: каждый метод глубокого обучения превзошёл отраслевой базлайн Dynamic Time Warping и по полноте, и по скорости — инференс до 470× быстрее; итоги оформлены в решающий фреймворк и финальный отчёт для SLB.' }
+    ]
+  },
+  {
+    company: 'Bordier Finlab',
+    companyNote: { en: 'Geneva, Switzerland', fr: 'Genève, Suisse', it: 'Ginevra, Svizzera', ru: 'Женева, Швейцария' },
+    role: { en: 'Data Analyst Intern', fr: 'Stagiaire Data Analyst', it: 'Tirocinante Data Analyst', ru: 'Стажёр Data Analyst' },
+    period: { en: 'Jul – Aug 2025', fr: 'juil. – août 2025', it: 'lug – ago 2025', ru: 'июль – авг. 2025' },
+    bullets: [
+      { en: 'Optimized asset-allocation and Monte Carlo simulation models, cutting processing time and improving forecast accuracy.',
+        fr: 'Optimisation des modèles d’allocation d’actifs et des simulations Monte-Carlo : temps de calcul réduits et prévisions plus précises.',
+        it: 'Ottimizzati i modelli di asset allocation e le simulazioni Monte Carlo, riducendo i tempi di calcolo e migliorando l’accuratezza delle previsioni.',
+        ru: 'Оптимизировал модели распределения активов и симуляции Монте-Карло, сократив время расчётов и повысив точность прогнозов.' },
+      { en: 'Designed and enhanced Excel templates used in monthly fund analysis, reducing manual work by 80%.',
+        fr: 'Conception et amélioration de modèles Excel pour l’analyse mensuelle des fonds, réduisant le travail manuel de 80 %.',
+        it: 'Progettati e migliorati i template Excel per l’analisi mensile dei fondi, riducendo il lavoro manuale dell’80%.',
+        ru: 'Разработал и улучшил Excel-шаблоны ежемесячного анализа фондов, сократив ручную работу на 80%.' },
+      { en: 'In the internal AI competition, built an Azure-powered web app and an AI scheduling agent that cut weekly scheduling time by 60% (1.5 h saved per employee) — reclaiming +100K CHF in annual productivity. My first real AI agents in production, and the moment I got hooked.',
+        fr: 'Lors du concours interne d’IA : web app sur Azure et agent IA de planification réduisant le temps de planification hebdomadaire de 60 % (1,5 h gagnée par employé) — soit +100K CHF de productivité annuelle. Mes premiers agents IA en conditions réelles, et le déclic.',
+        it: 'Nella competizione interna di AI: web app su Azure e agente AI di scheduling che ha ridotto del 60% il tempo di pianificazione settimanale (1,5 h risparmiate per dipendente) — recuperando +100K CHF di produttività annua. I miei primi agenti AI in un contesto reale: da lì non ho più smesso.',
+        ru: 'На внутреннем ИИ-конкурсе создал веб-приложение на Azure и ИИ-агента планирования, сократившего еженедельное расписание на 60% (1,5 часа на сотрудника) — вернув +100K CHF годовой продуктивности. Мои первые настоящие ИИ-агенты — и момент, когда я по-настоящему увлёкся.' }
+    ]
+  },
+  {
+    company: 'Outlier',
+    companyNote: { en: 'Paris, France', fr: 'Paris, France', it: 'Parigi, Francia', ru: 'Париж, Франция' },
+    role: { en: 'AI Applied Mathematician', fr: 'Mathématicien appliqué à l’IA', it: 'Matematico applicato all’IA', ru: 'Прикладной математик в области ИИ' },
+    period: { en: 'Feb – Jun 2025', fr: 'févr. – juin 2025', it: 'feb – giu 2025', ru: 'февр. – июнь 2025' },
+    bullets: [
+      { en: 'Collaborated with research teams to improve the performance of frontier AI models.',
+        fr: 'Collaboration avec des équipes de recherche pour améliorer la performance de modèles d’IA de pointe.',
+        it: 'Collaborato con team di ricerca per migliorare le prestazioni di modelli di IA all’avanguardia.',
+        ru: 'Работал с исследовательскими командами над улучшением качества передовых моделей ИИ.' },
+      { en: 'Contributed to the development and evaluation of advanced mathematical models for AI applications.',
+        fr: 'Contribution au développement et à l’évaluation de modèles mathématiques avancés pour des applications d’IA.',
+        it: 'Contribuito allo sviluppo e alla valutazione di modelli matematici avanzati per applicazioni di IA.',
+        ru: 'Участвовал в разработке и оценке продвинутых математических моделей для приложений ИИ.' }
+    ]
+  }
+];
+
+const EDUCATION = [
+  {
+    school: 'ESSEC & CentraleSupélec',
+    period: { en: '2024 – 2026 · Paris', fr: '2024 – 2026 · Paris', it: '2024 – 2026 · Parigi', ru: '2024 – 2026 · Париж' },
+    degree: { en: 'MSc in Data Science & Business Analytics', fr: 'MSc Data Science & Business Analytics', it: 'MSc in Data Science & Business Analytics', ru: 'MSc Data Science & Business Analytics' },
+    bullets: [
+      { en: '3rd MSc worldwide — QS Business Analytics Ranking 2025', fr: '3e MSc mondial — classement QS Business Analytics 2025', it: '3° MSc al mondo — QS Business Analytics Ranking 2025', ru: '3-е место в мире — QS Business Analytics Ranking 2025' },
+      { en: 'Scholarship recipient', fr: 'Boursier', it: 'Borsista', ru: 'Стипендиат' },
+      { en: 'Coursework: Foundations of GenAI, MLOps, Advanced Optimisation, Deep Learning', fr: 'Cours : GenAI, MLOps, optimisation avancée, deep learning', it: 'Corsi: Foundations of GenAI, MLOps, ottimizzazione avanzata, deep learning', ru: 'Курсы: основы GenAI, MLOps, продвинутая оптимизация, глубокое обучение' }
+    ]
+  },
+  {
+    school: 'Stanford University',
+    period: { en: '2023 · Stanford, CA', fr: '2023 · Stanford, CA', it: '2023 · Stanford, CA', ru: '2023 · Стэнфорд, США' },
+    degree: { en: 'International Honors Program', fr: 'International Honors Program', it: 'International Honors Program', ru: 'International Honors Program' },
+    bullets: [
+      { en: 'Scholarship recipient · GPA 3.6/4', fr: 'Boursier · GPA 3,6/4', it: 'Borsista · GPA 3,6/4', ru: 'Стипендиат · GPA 3,6/4' },
+      { en: 'Coursework: Technology Entrepreneurship, Convex Optimization, High-Performance Computing', fr: 'Cours : entrepreneuriat technologique, optimisation convexe, calcul haute performance', it: 'Corsi: Technology Entrepreneurship, Convex Optimization, High-Performance Computing', ru: 'Курсы: технологическое предпринимательство, выпуклая оптимизация, высокопроизводительные вычисления' }
+    ]
+  },
+  {
+    school: 'LUISS Guido Carli',
+    period: { en: '2021 – 2024 · Rome', fr: '2021 – 2024 · Rome', it: '2021 – 2024 · Roma', ru: '2021 – 2024 · Рим' },
+    degree: { en: 'BSc in Management & Computer Science', fr: 'Licence en Management & Informatique', it: 'Laurea in Management e Informatica', ru: 'Бакалавр менеджмента и информатики' },
+    bullets: [
+      { en: 'Final grade 108/110', fr: 'Note finale 108/110', it: 'Voto finale 108/110', ru: 'Итоговый балл 108/110' },
+      { en: 'Thesis: optimizing long-short equities with fuzzy logic and metaheuristics', fr: 'Mémoire : optimisation de portefeuilles long-short par logique floue et métaheuristiques', it: 'Tesi: ottimizzazione di portafogli long-short con logica fuzzy e metaeuristiche', ru: 'Диплом: оптимизация long-short портфелей с нечёткой логикой и метаэвристиками' }
+    ]
+  }
+];
+
+const FILTERS = [
+  { id: 'all',     label: { en: 'All', fr: 'Tous', it: 'Tutti', ru: 'Все' } },
+  { id: 'ai',      label: { en: 'AI & Agents', fr: 'IA & agents', it: 'AI & agenti', ru: 'ИИ и агенты' } },
+  { id: 'ml',      label: { en: 'ML & Forecasting', fr: 'ML & prévision', it: 'ML & forecasting', ru: 'ML и прогнозы' } },
+  { id: 'opt',     label: { en: 'Optimization', fr: 'Optimisation', it: 'Ottimizzazione', ru: 'Оптимизация' } },
+  { id: 'product', label: { en: 'Product & Ventures', fr: 'Produit & ventures', it: 'Prodotto & venture', ru: 'Продукт и стартапы' } }
+];
+
+const BADGES = {
+  first:  { cls: 'badge-gold',   label: { en: '🏆 1st place', fr: '🏆 1re place', it: '🏆 1° posto', ru: '🏆 1-е место' } },
+  top5:   { cls: 'badge-violet', label: { en: 'Top 5', fr: 'Top 5', it: 'Top 5', ru: 'Топ-5' } },
+  oss:    { cls: 'badge-green',  label: { en: 'Open source', fr: 'Open source', it: 'Open source', ru: 'Open source' } },
+  winner: { cls: 'badge-gold',   label: { en: '🏆 Winner', fr: '🏆 Vainqueur', it: '🏆 Vincitore', ru: '🏆 Победитель' } },
+  thesis: { cls: 'badge-violet', label: { en: 'BSc thesis', fr: 'Mémoire', it: 'Tesi', ru: 'Диплом' } }
+};
+
+const PROJECTS = [
+  {
+    cat: 'ml', badge: 'first',
+    title: { en: 'Park Wait Forecasting — Eleven Strategy Hackathon', fr: 'Prévision des temps d’attente — Hackathon Eleven Strategy', it: 'Previsione tempi d’attesa — Hackathon Eleven Strategy', ru: 'Прогноз очередей в парке — хакатон Eleven Strategy' },
+    desc: {
+      en: 'First-place, end-to-end forecasting system for amusement-park operations: XGBoost attendance forecasts plus per-attraction Gradient Boosting wait-time models, an inference pipeline blending weather and attendance, and three frontend dashboards for staffing and queue management.',
+      fr: 'Système de prévision de bout en bout, classé premier : prévisions d’affluence par XGBoost, modèles de temps d’attente par attraction en Gradient Boosting, pipeline d’inférence combinant météo et affluence, et trois dashboards pour le staffing et la gestion des files.',
+      it: 'Sistema di previsione end-to-end vincitore del primo posto: previsioni di affluenza con XGBoost, modelli di attesa per attrazione con Gradient Boosting, pipeline di inferenza che combina meteo e affluenza, e tre dashboard per staffing e gestione delle code.',
+      ru: 'Система прогнозирования «под ключ», занявшая первое место: прогноз посещаемости на XGBoost, модели времени ожидания по каждому аттракциону на Gradient Boosting, инференс-пайплайн с учётом погоды и три дашборда для персонала и управления очередями.'
+    },
+    tags: ['Python', 'XGBoost', 'FastAPI', 'TypeScript'],
+    link: 'https://github.com/Artur-Gar/Hackathon-Eleven-Strategy'
+  },
+  {
+    cat: 'opt', badge: 'oss',
+    title: { en: 'FPL Optimizer — Open-Source Contribution', fr: 'FPL Optimizer — Contribution open source', it: 'FPL Optimizer — Contributo open source', ru: 'FPL Optimizer — вклад в open source' },
+    desc: {
+      en: 'Fantasy Premier League squad optimizer built as a mixed-integer linear program (sasoptpy + HiGHS). Led HTTP response caching for the FPL API — a 19× latency cut (0.299 s → 0.016 s) merged upstream — and fixed free-transfer and Free Hit budget bugs with the maintainer.',
+      fr: 'Optimiseur d’équipe Fantasy Premier League en programmation linéaire mixte (sasoptpy + HiGHS). Mise en cache HTTP de l’API FPL — latence divisée par 19 (0,299 s → 0,016 s), intégrée upstream — et correction de bugs de transferts et de budget Free Hit avec le mainteneur.',
+      it: 'Ottimizzatore di rosa per il Fantasy Premier League come programma lineare misto-intero (sasoptpy + HiGHS). Guidata la cache HTTP per l’API FPL — latenza ridotta di 19× (0,299 s → 0,016 s), integrata upstream — e corretti bug su trasferimenti e budget Free Hit col maintainer.',
+      ru: 'Оптимизатор состава Fantasy Premier League как смешанно-целочисленная линейная программа (sasoptpy + HiGHS). Возглавил внедрение HTTP-кэширования API FPL — задержка снижена в 19 раз (0,299 с → 0,016 с), принято в основную ветку — и вместе с мейнтейнером исправил баги трансферов и бюджета Free Hit.'
+    },
+    tags: ['Python', 'MILP', 'HiGHS', 'REST API'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'ai', badge: null,
+    title: { en: 'RiskGraph', fr: 'RiskGraph', it: 'RiskGraph', ru: 'RiskGraph' },
+    desc: {
+      en: 'LangGraph-based risk assessment app: graph workflows orchestrating analysis agents, FAISS vector retrieval, professional PDF reports generated with LaTeX, and asynchronous pipelines for speed.',
+      fr: 'Application d’analyse de risques basée sur LangGraph : workflows en graphe orchestrant des agents d’analyse, récupération vectorielle FAISS, rapports PDF en LaTeX et pipelines asynchrones.',
+      it: 'App di valutazione del rischio basata su LangGraph: workflow a grafo che orchestrano agenti di analisi, retrieval vettoriale con FAISS, report PDF professionali in LaTeX e pipeline asincrone.',
+      ru: 'Приложение оценки рисков на LangGraph: графовые воркфлоу, оркестрирующие аналитических агентов, векторный поиск FAISS, PDF-отчёты на LaTeX и асинхронные пайплайны.'
+    },
+    tags: ['LangGraph', 'FAISS', 'Streamlit', 'Docker'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'ai', badge: null,
+    title: { en: 'Pharma Marketing Multi-Agent', fr: 'Multi-agents marketing pharma', it: 'Multi-agente marketing pharma', ru: 'Мультиагент для фарм-маркетинга' },
+    desc: {
+      en: 'Built at an Artefact workshop: a multi-agent LangGraph system that generates regulation-compliant marketing copy for pharmaceutical products, with RAG retrieval, automatic compliance validation, and persona-targeted generation.',
+      fr: 'Développé lors d’un atelier Artefact : un système multi-agents LangGraph générant des messages marketing conformes à la réglementation pharmaceutique, avec récupération RAG, validation automatique de conformité et ciblage par persona.',
+      it: 'Sviluppato in un workshop Artefact: sistema multi-agente LangGraph che genera testi marketing conformi alle normative farmaceutiche, con retrieval RAG, validazione automatica di conformità e generazione mirata per persona.',
+      ru: 'Создан на воркшопе Artefact: мультиагентная система LangGraph, генерирующая маркетинговые тексты для фармпродуктов с соблюдением регуляторики — RAG-поиск, автоматическая проверка соответствия и таргетинг по персонам.'
+    },
+    tags: ['LangGraph', 'RAG', 'ChromaDB', 'GPT-4'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'ai', badge: 'winner',
+    title: { en: 'AI Scheduling Agent — Bordier AI Competition', fr: 'Agent IA de planification — Concours Bordier', it: 'Agente AI di scheduling — Competizione Bordier', ru: 'ИИ-агент планирования — конкурс Bordier' },
+    desc: {
+      en: 'Redesigned team workflows for the internal AI competition at Bordier Finlab: an Azure-powered web app with an AI agent that cut weekly scheduling time by 60% — 1.5 hours saved per employee, +100K CHF in annual productivity.',
+      fr: 'Refonte des workflows d’équipe pour le concours interne d’IA de Bordier Finlab : web app sur Azure avec un agent IA réduisant le temps de planification de 60 % — 1,5 h gagnée par employé, +100K CHF de productivité annuelle.',
+      it: 'Ridisegnati i workflow di team per la competizione interna di AI di Bordier Finlab: web app su Azure con un agente AI che ha tagliato del 60% il tempo di pianificazione — 1,5 h risparmiate per dipendente, +100K CHF di produttività annua.',
+      ru: 'Перестроил командные процессы для внутреннего ИИ-конкурса Bordier Finlab: веб-приложение на Azure с ИИ-агентом, сократившим время планирования на 60% — 1,5 часа на сотрудника, +100K CHF годовой продуктивности.'
+    },
+    tags: ['Azure', 'AI Agents', 'Python'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'ai', badge: null,
+    title: { en: 'Greenwashing Detector — Ekimetrics Hackathon', fr: 'Détecteur de greenwashing — Hackathon Ekimetrics', it: 'Rilevatore di greenwashing — Hackathon Ekimetrics', ru: 'Детектор гринвошинга — хакатон Ekimetrics' },
+    desc: {
+      en: 'A complete retrieval-augmented generation system that spotlights greenwashing in a client’s communications — designed, built, and demoed in a single afternoon.',
+      fr: 'Un système RAG complet qui met en évidence le greenwashing dans les communications d’un client — conçu, construit et présenté en un seul après-midi.',
+      it: 'Un sistema RAG completo che evidenzia il greenwashing nelle comunicazioni di un cliente — progettato, costruito e presentato in un solo pomeriggio.',
+      ru: 'Полноценная RAG-система, выявляющая гринвошинг в коммуникациях клиента — спроектирована, собрана и продемонстрирована за один день.'
+    },
+    tags: ['RAG', 'NLP', 'LLMs'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'ai', badge: 'top5',
+    title: { en: 'n8n Hackathon Milan', fr: 'Hackathon n8n Milan', it: 'Hackathon n8n Milano', ru: 'Хакатон n8n в Милане' },
+    desc: {
+      en: 'Built a workflow-automation project at the official n8n hackathon in Milan — reached the top 5 among all competing teams.',
+      fr: 'Projet d’automatisation de workflows au hackathon officiel n8n de Milan — classé dans le top 5 de toutes les équipes.',
+      it: 'Progetto di automazione di workflow all’hackathon ufficiale n8n di Milano — arrivato nella top 5 tra tutti i team.',
+      ru: 'Проект автоматизации рабочих процессов на официальном хакатоне n8n в Милане — вошёл в топ-5 среди всех команд.'
+    },
+    tags: ['n8n', 'Automation', 'AI'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'ml', badge: 'first',
+    title: { en: 'Kaggle — Foundations of ML Challenge', fr: 'Kaggle — Challenge Foundations of ML', it: 'Kaggle — Foundations of ML Challenge', ru: 'Kaggle — Foundations of ML Challenge' },
+    desc: {
+      en: 'Ranked 1st on the leaderboard of the M1 DSBA Foundations of Machine Learning Kaggle competition, beating the whole cohort on predictive performance.',
+      fr: 'Classé 1er au leaderboard de la compétition Kaggle Foundations of Machine Learning du M1 DSBA, devant toute la promotion en performance prédictive.',
+      it: 'Classificato 1° nella leaderboard della competizione Kaggle Foundations of Machine Learning dell’M1 DSBA, battendo l’intera coorte in performance predittiva.',
+      ru: 'Занял 1-е место в лидерборде Kaggle-соревнования Foundations of Machine Learning (M1 DSBA), опередив весь поток по качеству предсказаний.'
+    },
+    tags: ['Python', 'scikit-learn'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'opt', badge: 'thesis',
+    title: { en: 'Long-Short Equities via Fuzzy Logic', fr: 'Portefeuilles long-short par logique floue', it: 'Portafogli long-short con logica fuzzy', ru: 'Long-short портфели на нечёткой логике' },
+    desc: {
+      en: 'Bachelor’s thesis: an approach to optimize long-short equity portfolios combining fuzzy logic with metaheuristic techniques — advanced mathematics applied to practical portfolio management.',
+      fr: 'Mémoire de licence : une approche d’optimisation de portefeuilles long-short combinant logique floue et métaheuristiques — des mathématiques avancées appliquées à la gestion de portefeuille.',
+      it: 'Tesi di laurea: un approccio per ottimizzare portafogli azionari long-short combinando logica fuzzy e tecniche metaeuristiche — matematica avanzata applicata alla gestione di portafoglio.',
+      ru: 'Дипломная работа: подход к оптимизации long-short портфелей акций, сочетающий нечёткую логику с метаэвристиками — продвинутая математика в практическом управлении портфелем.'
+    },
+    tags: ['Python', 'Metaheuristics', 'Finance'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'opt', badge: null,
+    title: { en: 'Custom PageRank Implementation', fr: 'Implémentation PageRank sur mesure', it: 'Implementazione custom di PageRank', ru: 'Собственная реализация PageRank' },
+    desc: {
+      en: 'For a Social Network Analysis course project, implemented a well-optimized custom PageRank algorithm, led the computational side, and taught teammates how it worked — until they could tackle harder problems on their own.',
+      fr: 'Pour un projet d’analyse de réseaux sociaux : implémentation optimisée d’un PageRank sur mesure, pilotage du volet computationnel, et transmission aux coéquipiers — jusqu’à ce qu’ils soient autonomes sur des problèmes plus durs.',
+      it: 'Per un progetto di Social Network Analysis: implementato un PageRank custom ben ottimizzato, guidata la parte computazionale e insegnato ai compagni come funzionava — finché non hanno saputo affrontare da soli problemi più complessi.',
+      ru: 'В курсовом проекте по анализу социальных сетей реализовал оптимизированный собственный PageRank, вёл вычислительную часть и обучил команду — пока они не смогли самостоятельно решать более сложные задачи.'
+    },
+    tags: ['Python', 'Graph Algorithms'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'ai', badge: null,
+    title: { en: 'LUISS Freshers Chatbot', fr: 'Chatbot pour les nouveaux étudiants LUISS', it: 'Chatbot per le matricole LUISS', ru: 'Чат-бот для первокурсников LUISS' },
+    desc: {
+      en: 'As a senior member of Starting Finance Club’s AI & ML research department, developed a chatbot helping incoming LUISS students with their doubts, concerns, and everyday problems.',
+      fr: 'En tant que membre senior du département recherche IA & ML du Starting Finance Club : développement d’un chatbot aidant les nouveaux étudiants de la LUISS avec leurs doutes et problèmes du quotidien.',
+      it: 'Come membro senior del dipartimento di ricerca AI & ML dello Starting Finance Club: sviluppato un chatbot che aiuta le matricole LUISS con dubbi, preoccupazioni e problemi quotidiani.',
+      ru: 'Как старший участник отдела исследований AI & ML клуба Starting Finance разработал чат-бота, помогающего новым студентам LUISS с вопросами и повседневными проблемами.'
+    },
+    tags: ['Python', 'NLP', 'Chatbot'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'ml', badge: null,
+    title: { en: 'Neural Network Recommender Systems', fr: 'Systèmes de recommandation neuronaux', it: 'Sistemi di raccomandazione neurali', ru: 'Нейросетевые рекомендательные системы' },
+    desc: {
+      en: 'Designed and implemented three distinct neural-network recommendation systems for a clothing company, improving personalization and customer engagement.',
+      fr: 'Conception et implémentation de trois systèmes de recommandation par réseaux de neurones pour une marque de vêtements, améliorant personnalisation et engagement client.',
+      it: 'Progettati e implementati tre sistemi di raccomandazione a reti neurali per un’azienda di abbigliamento, migliorando personalizzazione ed engagement.',
+      ru: 'Спроектировал и реализовал три рекомендательные системы на нейросетях для бренда одежды, улучшив персонализацию и вовлечённость клиентов.'
+    },
+    tags: ['TensorFlow', 'Neural Networks'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'ml', badge: null,
+    title: { en: 'US Telecom Churn Prediction', fr: 'Prédiction du churn télécom (US)', it: 'Previsione churn telecom USA', ru: 'Прогноз оттока клиентов (телеком США)' },
+    desc: {
+      en: 'Predictive churn models in R using multiple classification techniques, including LASSO regression, to surface the key factors driving customer attrition and guide retention strategy.',
+      fr: 'Modèles prédictifs de churn en R avec plusieurs techniques de classification, dont la régression LASSO, pour identifier les facteurs clés d’attrition et guider la rétention.',
+      it: 'Modelli predittivi di churn in R con diverse tecniche di classificazione, tra cui la regressione LASSO, per individuare i fattori chiave dell’abbandono e guidare la retention.',
+      ru: 'Предиктивные модели оттока в R с разными методами классификации, включая LASSO-регрессию, — для выявления ключевых факторов ухода клиентов и стратегии удержания.'
+    },
+    tags: ['R', 'LASSO', 'Classification'],
+    link: 'https://github.com/alessandroiva'
+  },
+  {
+    cat: 'product', badge: null,
+    title: { en: 'Financial Micro-Learning App — Silicon Valley Pitch', fr: 'App de micro-apprentissage financier — Pitch Silicon Valley', it: 'App di micro-apprendimento finanziario — Pitch in Silicon Valley', ru: 'Финансовое микрообучение — питч в Кремниевой долине' },
+    desc: {
+      en: 'In a team of four, pitched a fintech startup to Silicon Valley investors: a TikTok-style scrolling app for financial micro-learning, serving bite-sized facts and news. Received positive feedback from the investors.',
+      fr: 'En équipe de quatre : pitch d’une startup fintech devant des investisseurs de la Silicon Valley — une app de micro-apprentissage financier au défilement type TikTok. Retours positifs des investisseurs.',
+      it: 'In un team di quattro: pitch di una startup fintech a investitori della Silicon Valley — un’app di micro-apprendimento finanziario con scorrimento in stile TikTok. Feedback positivo dagli investitori.',
+      ru: 'В команде из четырёх человек представил финтех-стартап инвесторам Кремниевой долины: приложение для финансового микрообучения со скроллингом в стиле TikTok. Получили положительные отзывы инвесторов.'
+    },
+    tags: ['Product', 'FinTech', 'Pitch'],
+    link: 'https://github.com/alessandroiva'
+  }
+];
+
+const SKILLS = [
+  {
+    ico: '⌨️',
+    title: { en: 'Programming', fr: 'Programmation', it: 'Programmazione', ru: 'Программирование' },
+    items: ['Python', 'R', 'SQL', 'C++', 'Spark', 'MongoDB']
+  },
+  {
+    ico: '🤖',
+    title: { en: 'AI & Machine Learning', fr: 'IA & machine learning', it: 'AI & machine learning', ru: 'ИИ и машинное обучение' },
+    items: ['LangChain', 'LangGraph', 'PyTorch', 'TensorFlow', 'RAG', 'AI Agents', 'n8n', 'scikit-learn', 'XGBoost']
+  },
+  {
+    ico: '☁️',
+    title: { en: 'Cloud, Data & Tools', fr: 'Cloud, data & outils', it: 'Cloud, dati & strumenti', ru: 'Облако, данные и инструменты' },
+    items: ['Azure', 'Supabase', 'Tableau', 'Power BI', 'Excel', 'KNIME', 'MATLAB', 'LaTeX']
+  },
+  {
+    ico: '🌍',
+    title: { en: 'Languages', fr: 'Langues', it: 'Lingue', ru: 'Языки' },
+    items: null,
+    langs: [
+      { en: 'Italian — native', fr: 'Italien — natif', it: 'Italiano — madrelingua', ru: 'Итальянский — родной' },
+      { en: 'Russian — native', fr: 'Russe — natif', it: 'Russo — madrelingua', ru: 'Русский — родной' },
+      { en: 'English — fluent (IELTS C1)', fr: 'Anglais — courant (IELTS C1)', it: 'Inglese — fluente (IELTS C1)', ru: 'Английский — свободно (IELTS C1)' },
+      { en: 'French — intermediate (DELF B2)', fr: 'Français — intermédiaire (DELF B2)', it: 'Francese — intermedio (DELF B2)', ru: 'Французский — средний (DELF B2)' }
+    ]
+  }
+];
+
+const HONORS = [
+  {
+    year: '2025',
+    title: { en: 'Nova Talent Member', fr: 'Membre Nova Talent', it: 'Membro Nova Talent', ru: 'Участник Nova Talent' },
+    desc: { en: 'Selected for the global, invite-only professional network connecting top talent through mentoring and peer communities.',
+            fr: 'Sélectionné pour le réseau professionnel mondial sur invitation, qui connecte les meilleurs talents via mentorat et communautés.',
+            it: 'Selezionato per il network professionale globale su invito che connette i migliori talenti tramite mentoring e community.',
+            ru: 'Отобран в глобальную закрытую профессиональную сеть, объединяющую таланты через менторство и сообщества.' }
+  },
+  {
+    year: '2024',
+    title: { en: 'Silicon Valley Fellowship', fr: 'Silicon Valley Fellowship', it: 'Silicon Valley Fellowship', ru: 'Silicon Valley Fellowship' },
+    desc: { en: 'Fellow of a Silicon Valley program of workshops and private events — 5% admission rate.',
+            fr: 'Fellow d’un programme d’ateliers et d’événements privés en Silicon Valley — 5 % de taux d’admission.',
+            it: 'Fellow di un programma di workshop ed eventi privati in Silicon Valley — tasso di ammissione del 5%.',
+            ru: 'Фелло программы воркшопов и закрытых мероприятий в Кремниевой долине — проходной отбор 5%.' }
+  },
+  {
+    year: '2023',
+    title: { en: 'USF — Understanding Startup Fundamentals', fr: 'USF — Understanding Startup Fundamentals', it: 'USF — Understanding Startup Fundamentals', ru: 'USF — Understanding Startup Fundamentals' },
+    desc: { en: 'Intensive LVenture Group program: after a strict selection, developed and presented a business plan to investors.',
+            fr: 'Programme intensif de LVenture Group : après une sélection stricte, développement et présentation d’un business plan à des investisseurs.',
+            it: 'Programma intensivo di LVenture Group: dopo una selezione rigorosa, sviluppato e presentato un business plan a investitori.',
+            ru: 'Интенсивная программа LVenture Group: после строгого отбора разработал и представил бизнес-план инвесторам.' }
+  },
+  {
+    year: '2022',
+    title: { en: 'LIMUN Delegate', fr: 'Délégué LIMUN', it: 'Delegato LIMUN', ru: 'Делегат LIMUN' },
+    desc: { en: 'Delegate in the Interpol committee at London International Model United Nations, Europe’s largest university MUN — public speaking, negotiation, persuasion.',
+            fr: 'Délégué au comité Interpol du London International Model United Nations, le plus grand MUN universitaire d’Europe — prise de parole, négociation, persuasion.',
+            it: 'Delegato nel comitato Interpol al London International Model United Nations, il più grande MUN universitario d’Europa — public speaking, negoziazione, persuasione.',
+            ru: 'Делегат комитета Интерпола на London International Model United Nations, крупнейшем университетском MUN Европы — публичные выступления, переговоры, убеждение.' }
+  },
+  {
+    year: '2013 – 2020',
+    title: { en: 'Kickboxing', fr: 'Kick-boxing', it: 'Kickboxing', ru: 'Кикбоксинг' },
+    desc: { en: 'Trained twice a week for seven years and competed in local tournaments — discipline, confidence, resilience.',
+            fr: 'Entraînement bihebdomadaire pendant sept ans et tournois locaux — discipline, confiance, résilience.',
+            it: 'Allenamenti due volte a settimana per sette anni e tornei locali — disciplina, fiducia, resilienza.',
+            ru: 'Семь лет тренировок дважды в неделю и местные турниры — дисциплина, уверенность, стойкость.' }
+  },
+  {
+    year: '2021 – 2024',
+    title: { en: 'Starting Finance Club & Ski Club', fr: 'Starting Finance Club & Club de ski', it: 'Starting Finance Club & Ski Club', ru: 'Starting Finance Club и лыжный клуб' },
+    desc: { en: 'Senior member of Starting Finance Club at LUISS (AI/ML research and IT — helped build the association’s new website in a 5-person team). Skier since age 5.',
+            fr: 'Membre senior du Starting Finance Club à la LUISS (recherche IA/ML et IT — participation au nouveau site de l’association en équipe de 5). Skieur depuis l’âge de 5 ans.',
+            it: 'Membro senior dello Starting Finance Club alla LUISS (ricerca AI/ML e IT — contribuito al nuovo sito dell’associazione in un team di 5). Sciatore da quando avevo 5 anni.',
+            ru: 'Старший участник клуба Starting Finance в LUISS (исследования AI/ML и IT — участвовал в создании нового сайта клуба в команде из 5 человек). На лыжах с 5 лет.' }
+  }
+];
+
+const CONTACT = {
+  blurb: {
+    en: 'I’m looking for a final-year internship in AI engineering, data science, or business analytics — available from September 2026. Have an opportunity, a question, or just want to talk agents and optimization? My inbox is open.',
+    fr: 'Je recherche un stage de fin d’études en ingénierie IA, data science ou business analytics — disponible dès septembre 2026. Une opportunité, une question, ou simplement envie de parler agents et optimisation ? Écrivez-moi.',
+    it: 'Cerco uno stage di fine percorso in AI engineering, data science o business analytics — disponibile da settembre 2026. Un’opportunità, una domanda, o solo voglia di parlare di agenti e ottimizzazione? Scrivimi.',
+    ru: 'Ищу стажировку на последний год обучения в AI-инженерии, data science или бизнес-аналитике — доступен с сентября 2026. Есть предложение, вопрос или просто хотите поговорить об агентах и оптимизации? Пишите.'
+  },
+  phone: { en: 'Phone', fr: 'Téléphone', it: 'Telefono', ru: 'Телефон' }
+};
+
+const FOOTER = {
+  en: '© 2026 Alessandro Ivashkevich — built with curiosity, caffeine, and a love for clean data.',
+  fr: '© 2026 Alessandro Ivashkevich — construit avec curiosité, caféine et amour des données propres.',
+  it: '© 2026 Alessandro Ivashkevich — costruito con curiosità, caffeina e amore per i dati puliti.',
+  ru: '© 2026 Алессандро Ивашкевич — создано с любопытством, кофеином и любовью к чистым данным.'
+};
+
+/* =====================================================
+   RENDER
+   ===================================================== */
+let lang = localStorage.getItem('lang') || 'en';
+if (!['en', 'fr', 'it', 'ru'].includes(lang)) lang = 'en';
+let activeFilter = 'all';
+
+const t = (v) => (typeof v === 'string' ? v : (v[lang] || v.en));
+const esc = (s) => s; // content is trusted (authored above)
+
+function sectionHead(key) {
+  const s = SECTIONS[key];
+  return `<div class="section-head reveal">
+    <span class="eyebrow">${s.no} — ${t(s.title)}</span>
+    <h2>${t(s.title)}</h2>
+  </div>`;
+}
+
+function render() {
+  const app = document.getElementById('app');
+
+  // nav links
+  document.getElementById('navLinks').innerHTML = NAV.map(n =>
+    `<li><a href="#${n.id}">${t(n.label)}</a></li>`).join('');
+
+  app.innerHTML = `
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container">
+        <span class="hero-eyebrow">${t(HERO.eyebrow)}</span>
+        <h1>Alessandro<br><span class="grad-text">Ivashkevich</span></h1>
+        <div class="hero-role">${t(HERO.iam)} <span class="typed" id="typed"></span><span class="caret">&nbsp;</span></div>
+        <p class="hero-tagline">${t(HERO.tagline)}</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">${t(HERO.cta1)}</a>
+          <a href="#contact" class="btn btn-ghost">${t(HERO.cta2)}</a>
+        </div>
+      </div>
+      <div class="scroll-hint">${t(HERO.scroll)}</div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" style="padding-top:0">
+      <div class="container">
+        <div class="stats-grid">
+          ${STATS.map((s, i) => `
+            <div class="stat reveal" style="transition-delay:${i * 90}ms">
+              <div class="stat-value" ${s.num ? `data-count="${s.num}" data-prefix="${s.prefix || ''}" data-suffix="${s.suffix || ''}"` : ''}>${s.value}</div>
+              <div class="stat-label">${t(s.label)}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        ${sectionHead('about')}
+        <div class="about-content">
+          <div class="about-photo reveal">
+            <img src="CV Pic.jpeg" alt="Alessandro Ivashkevich">
+          </div>
+          <div class="about-text reveal" style="transition-delay:120ms">
+            <p>${t(ABOUT.p1)}</p>
+            <p>${t(ABOUT.p2)}</p>
+            <p>${t(ABOUT.p3)}</p>
+            <div class="values">
+              ${ABOUT.values.map(v => `<span class="chip">${t(v)}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container">
+        ${sectionHead('experience')}
+        <div class="timeline">
+          ${EXPERIENCE.map((x, i) => `
+            <div class="timeline-item reveal" style="transition-delay:${i * 100}ms">
+              <div class="timeline-dot"></div>
+              <div class="xp-card">
+                <div class="xp-head">
+                  <div class="xp-role">${t(x.role)}</div>
+                  <div class="xp-period">${t(x.period)}</div>
+                </div>
+                <div class="xp-company">${x.company} <span>· ${t(x.companyNote)}</span></div>
+                <ul>${x.bullets.map(b => `<li>${t(b)}</li>`).join('')}</ul>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="container">
+        ${sectionHead('education')}
+        <div class="edu-grid">
+          ${EDUCATION.map((e, i) => `
+            <div class="edu-card reveal" style="transition-delay:${i * 100}ms">
+              <div class="edu-period">${t(e.period)}</div>
+              <div class="edu-school">${e.school}</div>
+              <div class="edu-degree">${t(e.degree)}</div>
+              <ul>${e.bullets.map(b => `<li>${t(b)}</li>`).join('')}</ul>
+            </div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        ${sectionHead('projects')}
+        <div class="filters reveal">
+          ${FILTERS.map(f => `<button class="filter-btn${f.id === activeFilter ? ' active' : ''}" data-filter="${f.id}">${t(f.label)}</button>`).join('')}
+        </div>
+        <div class="projects-grid">
+          ${PROJECTS.map((p, i) => {
+            const badge = p.badge ? BADGES[p.badge] : null;
+            return `
+            <div class="project-card reveal${activeFilter !== 'all' && p.cat !== activeFilter ? ' hide' : ''}" data-cat="${p.cat}" style="transition-delay:${(i % 6) * 70}ms">
+              <div class="project-top">
+                <h3>${t(p.title)}</h3>
+                ${badge ? `<span class="badge ${badge.cls}">${t(badge.label)}</span>` : ''}
+              </div>
+              <p>${t(p.desc)}</p>
+              <div class="tech-stack">${p.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}</div>
+              <div class="project-links"><a href="${p.link}" target="_blank" rel="noopener">GitHub →</a></div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        ${sectionHead('skills')}
+        <div class="skills-grid">
+          ${SKILLS.map((s, i) => `
+            <div class="skill-card reveal" style="transition-delay:${i * 90}ms">
+              <h3><span class="ico">${s.ico}</span>${t(s.title)}</h3>
+              <div class="skill-tags">
+                ${s.items
+                  ? s.items.map(it => `<span class="tech-tag">${it}</span>`).join('')
+                  : s.langs.map(l => `<span class="tech-tag">${t(l)}</span>`).join('')}
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- HONORS -->
+    <section id="honors">
+      <div class="container">
+        ${sectionHead('honors')}
+        <div class="honors-grid">
+          ${HONORS.map((h, i) => `
+            <div class="honor-card reveal" style="transition-delay:${(i % 3) * 90}ms">
+              <div class="honor-year">${h.year}</div>
+              <h3>${t(h.title)}</h3>
+              <p>${t(h.desc)}</p>
+            </div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <span class="eyebrow">${SECTIONS.contact.no} — ${t(NAV[6].label)}</span>
+          <h2>${t(SECTIONS.contact.title)}</h2>
+          <p>${t(CONTACT.blurb)}</p>
+          <a href="mailto:alessandroivashkevich@gmail.com" class="contact-email">alessandroivashkevich@gmail.com</a>
+          <div class="social-links">
+            <a href="https://github.com/alessandroiva" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://linkedin.com/in/alessandroiva" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="tel:+393486136439">${t(CONTACT.phone)}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container"><p>${t(FOOTER)}</p></div>
+    </footer>
+  `;
+
+  document.documentElement.lang = lang;
+  bindDynamic();
+  observeReveals();
+  startTyping();
+}
+
+/* =====================================================
+   INTERACTIONS
+   ===================================================== */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+// --- language switch ---
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    lang = btn.dataset.lang;
+    localStorage.setItem('lang', lang);
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b === btn));
+    render();
+  });
+  btn.classList.toggle('active', btn.dataset.lang === lang);
+});
+
+// --- mobile menu ---
+const mobileToggle = document.getElementById('mobileToggle');
+const navLinksEl = document.getElementById('navLinks');
+mobileToggle.addEventListener('click', () => navLinksEl.classList.toggle('open'));
+navLinksEl.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') navLinksEl.classList.remove('open');
+});
+
+// --- typing effect ---
+let typeTimer = null;
+function startTyping() {
+  clearTimeout(typeTimer);
+  const el = document.getElementById('typed');
+  if (!el) return;
+  const phrases = HERO.roles[lang] || HERO.roles.en;
+  if (reduceMotion) { el.textContent = phrases[0]; return; }
+  let pi = 0, ci = 0, deleting = false;
+  (function tick() {
+    const phrase = phrases[pi];
+    el.textContent = phrase.slice(0, ci);
+    let delay = deleting ? 26 : 52;
+    if (!deleting && ci === phrase.length) { delay = 2100; deleting = true; }
+    else if (deleting && ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; delay = 350; }
+    else ci += deleting ? -1 : 1;
+    typeTimer = setTimeout(tick, delay);
+  })();
+}
+
+// --- reveal on scroll + counters ---
+function animateCounter(el) {
+  const target = parseInt(el.dataset.count, 10);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  if (reduceMotion) { el.textContent = prefix + target + suffix; return; }
+  const dur = 1400;
+  const start = performance.now();
+  (function step(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = prefix + Math.round(target * eased) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  })(performance.now());
+}
+
+let revealObserver = null;
+function observeReveals() {
+  if (revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      en.target.querySelectorAll('[data-count]').forEach(animateCounter);
+      if (en.target.hasAttribute('data-count')) animateCounter(en.target);
+      revealObserver.unobserve(en.target);
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+
+// --- dynamic bindings after each render ---
+function bindDynamic() {
+  // project filters
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.classList.toggle('hide', activeFilter !== 'all' && card.dataset.cat !== activeFilter);
+      });
+    });
+  });
+
+  // 3D tilt on project cards
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const rx = ((e.clientY - r.top) / r.height - 0.5) * -6;
+        const ry = ((e.clientX - r.left) / r.width - 0.5) * 6;
+        card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+  }
+}
+
+// --- scroll progress + active nav link ---
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  progress.style.width = pct + '%';
+
+  let current = '';
+  NAV.forEach(n => {
+    const sec = document.getElementById(n.id);
+    if (sec && sec.getBoundingClientRect().top < window.innerHeight * 0.4) current = n.id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+
+// --- cursor glow ---
+const glow = document.getElementById('cursorGlow');
+if (finePointer && !reduceMotion) {
+  window.addEventListener('mousemove', (e) => {
+    glow.style.opacity = '1';
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  }, { passive: true });
+}
+
+// --- starfield canvas ---
+(function starfield() {
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let w, h, stars = [];
+  let mx = 0, my = 0;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    const count = Math.min(160, Math.floor(w * h / 12000));
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      z: Math.random() * 0.7 + 0.3,           // depth → parallax + size
+      tw: Math.random() * Math.PI * 2,        // twinkle phase
+      v: Math.random() * 0.08 + 0.02          // drift speed
+    }));
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  if (reduceMotion) {
+    // static render
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    stars.forEach(s => { ctx.beginPath(); ctx.arc(s.x, s.y, s.z, 0, 7); ctx.fill(); });
+    return;
   }
 
-  // Smooth-scroll to the target section within the active language container
-  document.addEventListener('click', function(e) {
-    const anchor = e.target.closest('a[href^="#"]');
-    if (!anchor) return;
-    const hash = anchor.getAttribute('href');
-    const id = hash.slice(1);
-    const activeLangContainer = document.querySelector('.lang-content.active');
-    if (!activeLangContainer) return;
-    const target = activeLangContainer.querySelector('#' + id);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  window.addEventListener('mousemove', (e) => {
+    mx = (e.clientX / w - 0.5) * 14;
+    my = (e.clientY / h - 0.5) * 14;
+  }, { passive: true });
+
+  (function frame(tms) {
+    ctx.clearRect(0, 0, w, h);
+    for (const s of stars) {
+      s.y -= s.v * s.z;
+      if (s.y < -2) { s.y = h + 2; s.x = Math.random() * w; }
+      const alpha = 0.25 + 0.45 * (0.5 + 0.5 * Math.sin(tms / 900 + s.tw));
+      ctx.fillStyle = `rgba(200, 210, 255, ${alpha * s.z})`;
+      ctx.beginPath();
+      ctx.arc(s.x + mx * s.z, s.y + my * s.z, s.z * 1.15, 0, 7);
+      ctx.fill();
     }
-  });
+    requestAnimationFrame(frame);
+  })(0);
+})();
+
+// initial paint
+render();
 </script>
 </body>
 </html>
